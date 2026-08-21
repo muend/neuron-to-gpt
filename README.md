@@ -11,7 +11,7 @@ değilse kod terminale ASCII grafik basar ve yine çalışır.
 ## Kurulum
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/muend/neuron-to-gpt
 cd neuron-to-gpt
 python3 --version          # 3.8+ yeterli
 
