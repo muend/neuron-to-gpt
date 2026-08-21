@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+
+# Uretilen grafikler (istersen bu satiri sil ve PNG'leri de commit et)
+**/outputs/*.png
