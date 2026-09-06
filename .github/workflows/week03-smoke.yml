@@ -1,0 +1,38 @@
+name: Week 03 smoke test
+
+on:
+  push:
+    paths:
+      - "week03/**"
+      - ".github/workflows/week03-smoke.yml"
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r week03/requirements.txt
+      - name: Prepare datasets
+        working-directory: week03
+        run: python veri_hazirla.py
+      - name: Count bigram, probability, NLL and visualization
+        working-directory: week03
+        run: python adim1_2_3_bigram_count.py
+      - name: Neural bigram smoke training
+        working-directory: week03
+        run: python adim4_bigram_nn.py --steps 3 --lr 10
+      - name: Turkish model smoke training
+        working-directory: week03
+        run: python adim5_turkce.py --steps 3 --lr 10
+      - name: Trigram bonus evaluation
+        working-directory: week03
+        run: python bonus_trigram.py --dataset en
