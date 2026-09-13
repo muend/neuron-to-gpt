@@ -10,3 +10,7 @@ env/
 
 # Uretilen grafikler (istersen bu satiri sil ve PNG'leri de commit et)
 **/outputs/*.png
+
+# Scriptlerle indirilen/üretilen veri dosyaları
+week03/data/names_*.txt
+week03/data/turkce_isim.csv
