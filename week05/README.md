@@ -1,44 +1,45 @@
-# Hafta 5 — Backpropagation'ı elle yazmak
+# Week 5 — Writing backpropagation by hand
 
-Bu hafta, Hafta 4'teki üç karakter bağlamlı MLP + BatchNorm modelinin
-gradient'lerini `loss.backward()` kullanmadan adım adım hesaplıyoruz. PyTorch
-autograd yalnızca doğru cevabı üreten referans olarak kullanılıyor.
+This week expands the three-character MLP + BatchNorm model from Week 4 into
+small operations and derives every gradient without using `loss.backward()`.
+PyTorch autograd is used only as the reference result.
 
-## Dosyalar
+## Files
 
-- `ortak.py`: veri hazırlığı, parametreler ve küçük işlemlere ayrılmış forward pass.
-- `adim1_autograd_referans.py`: bütün ara tensor'larda `retain_grad()` çağırır,
-  `loss.backward()` çalıştırır ve PyTorch gradient'lerinin şekil/normlarını gösterir.
-- `adim2_manual_backprop.py`: zincir kuralını sondan başa elle uygular ve 26
-  gradient'i `cmp` fonksiyonuyla autograd sonucuna karşı doğrular.
-- `requirements.txt`: yalnızca PyTorch bağımlılığı.
+- `common.py`: data preparation, parameter initialization, and the expanded
+  forward pass.
+- `step1_autograd_reference.py`: calls `retain_grad()` on every intermediate
+  tensor, runs `loss.backward()`, and reports gradient shapes and norms.
+- `step2_manual_backprop.py`: applies the chain rule in reverse and compares 26
+  manually derived gradients against autograd with `cmp`.
+- `requirements.txt`: the PyTorch dependency.
 
-İsteğe bağlı Egzersiz 2–4 (cross entropy ve BatchNorm backward'unu tek ifadeye
-indirme, modeli tamamen manuel gradient'lerle eğitme) bu teslimin zorunlu
-kapsamına dahil edilmedi.
+The optional Exercises 2–4—combining cross-entropy and BatchNorm backward into
+single expressions and training entirely with manual gradients—are outside the
+required scope of this submission.
 
-## Kurulum ve çalıştırma
+## Setup and execution
 
-Veri henüz hazırlanmadıysa:
+Prepare the data first if it is not already available:
 
 ```powershell
 .\.venv\Scripts\python.exe week03\veri_hazirla.py
 ```
 
-Sonra iki görevi çalıştır:
+Run the two required tasks:
 
 ```powershell
-.\.venv\Scripts\python.exe week05\adim1_autograd_referans.py
-.\.venv\Scripts\python.exe week05\adim2_manual_backprop.py
+.\.venv\Scripts\python.exe week05\step1_autograd_reference.py
+.\.venv\Scripts\python.exe week05\step2_manual_backprop.py
 ```
 
-İkinci komutun sonunda `26/26 gradient doğrulandı` yazmalıdır. `exact`, bit
-düzeyinde aynı sonucu; `approximate`, kayan noktalı işlem sırası yüzünden küçük
-fark olsa da tolerans içinde aynı sonucu ifade eder.
+The second command should finish with `26/26 gradients verified`. `exact` means
+bit-for-bit equality; `approximate` means equality within floating-point
+tolerance when the operation order differs slightly.
 
-## Forward zinciri
+## Forward chain
 
-Modelin ileri geçişi türevi görülebilecek küçük işlemlere ayrıldı:
+The forward pass is expanded into operations whose gradients can be inspected:
 
 ```text
 Xb -> emb -> embcat -> hprebn
@@ -48,27 +49,27 @@ Xb -> emb -> embcat -> hprebn
    -> counts_sum_inv -> probs -> logprobs -> loss
 ```
 
-Backward sırasında bu sıra tersine izlenir. Bir tensor ileri geçişte iki farklı
-işlemde kullanıldıysa iki koldan gelen gradient'ler toplanır.
+Backward follows this chain in reverse. When a tensor feeds more than one
+forward branch, the gradient contributions from those branches are added.
 
-## Broadcasting geri dönerken neden `sum` gerekir?
+## Why does broadcasting require `sum` during backward?
 
-Broadcast edilen küçük tensor ileri geçişte sanal olarak birçok kez kullanılır.
-Bu nedenle geri geçişte her kullanımdan gelen katkı özgün tensor şekline
-toplanmalıdır:
+A smaller tensor that is broadcast during the forward pass is virtually reused
+multiple times. Backward must sum the contribution from every use back into the
+original tensor shape:
 
-- `logits = h @ W2 + b2`: `b2` bütün batch satırlarında kullanılır;
+- `logits = h @ W2 + b2`: `b2` is reused for every batch row, so
   `db2 = dlogits.sum(0)`.
-- `hpreact = bngain * bnraw + bnbias`: gain ve bias batch boyunca kullanılır;
-  gradient'leri `dim=0` üzerinde toplanır.
-- `bndiff = hprebn - bnmeani`: tek satırlık mean bütün batch'e yayılır;
-  `dbnmeani = (-dbndiff).sum(0, keepdim=True)`.
-- `counts_sum = counts.sum(1, keepdim=True)`: ileri yöndeki satır toplamının
-  gradient'i geri yönde o satırdaki bütün sütunlara yayılır.
-- `emb = C[Xb]`: aynı harf indeksi tekrar kullanıldığında bütün kullanımların
-  gradient katkıları `dC` içindeki aynı satırda toplanır.
+- `hpreact = bngain * bnraw + bnbias`: gain and bias are reused across the
+  batch, so their gradients sum over `dim=0`.
+- `bndiff = hprebn - bnmeani`: the one-row mean broadcasts across the batch,
+  so `dbnmeani = (-dbndiff).sum(0, keepdim=True)`.
+- `counts_sum = counts.sum(1, keepdim=True)`: the gradient of each row sum
+  broadcasts back to every column in that row.
+- `emb = C[Xb]`: repeated character indices contribute to the same row of `dC`,
+  so those contributions accumulate.
 
-## Temel yerel türevler
+## Core local derivatives
 
 - `log(x)` → `1/x`
 - `exp(x)` → `exp(x)`
@@ -77,9 +78,10 @@ toplanmalıdır:
 - `tanh(x)` → `1 - tanh(x)**2`
 - `A @ B` → `dA = dOut @ B.T`, `dB = A.T @ dOut`
 
-Her yerel türev, zincirin devamından gelen gradient ile eleman bazında çarpılır.
+Each local derivative is multiplied element-wise by the gradient arriving from
+the remainder of the chain.
 
-## Kaynaklar
+## Sources
 
 - [Andrej Karpathy — Building makemore Part 4: Becoming a Backprop Ninja](https://www.youtube.com/watch?v=q8SA3rM6ckI)
-- [Karpathy'nin Part 4 egzersiz notebook'u](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part4_backprop.ipynb)
+- [Karpathy's Part 4 exercise notebook](https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part4_backprop.ipynb)

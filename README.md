@@ -1,10 +1,18 @@
 # neuron-to-gpt
 
-Tek bir nörondan başlayıp karakter-seviyesinde dil modeline ve oradan GPT'nin temel fikirlerine doğru ilerleyen öğrenme günlüğü. Her hafta bir klasör; her klasörde çalıştırılabilir, yorumlanmış Python dosyaları ve kavram notları var.
+A learning journal that starts with a single neuron, moves through
+character-level language models, and builds toward the core ideas behind GPT.
+Each week has its own directory with runnable Python files and concept notes.
 
-İlk iki haftada türev, gradient descent ve backpropagation mekanizmasını mümkün olduğunca **kütüphanesiz** kuruyoruz. Hafta 3'te görev gereği PyTorch'a geçiyoruz: amaç autograd'ı sihir gibi kullanmak değil, geçen hafta kendi yazdığımız `backward()` mekanizmasının tensor'larla nasıl ölçeklendiğini görmek.
+The first two weeks build derivatives, gradient descent, and backpropagation
+without machine-learning libraries. Week 3 moves to PyTorch to show how the
+previously implemented `backward()` mechanism scales from scalar values to
+tensors.
 
-## Kurulum
+Weeks 1–4 retain their original filenames for backward compatibility. All new
+Week 5 files and commands use English naming consistently.
+
+## Setup
 
 ```bash
 git clone https://github.com/muend/neuron-to-gpt
@@ -12,23 +20,23 @@ cd neuron-to-gpt
 python3 --version
 ```
 
-Hafta 1–2 çekirdek kodu standart kütüphane ile çalışır. Hafta 3–5 için:
+Weeks 1–2 use only the standard library. For Weeks 3–5:
 
 ```bash
 pip install -r week03/requirements.txt
 ```
 
-## Haftalar
+## Weeks
 
-| Hafta | Konu | Durum |
-|-------|------|-------|
-| [01](week01/) | Nöron, katman, loss, gradient descent, dil modeli fikri | ✅ |
-| [02](week02/) | Backpropagation: `Value`, computation graph, `backward()`, MLP eğitimi (micrograd) | ✅ |
-| [03](week03/) | Bigram character LM: counts, probability, sampling, NLL, one-hot, softmax, autograd; Türkçe model + trigram bonus | ✅ |
-| [04](week04/) | Embedding + MLP character LM; minibatch, split, init, tanh saturation, BatchNorm ve Türkçe model | ✅ |
-| [05](week05/) | MLP + BatchNorm forward graph'ı; ara gradient'ler, broadcasting ve elle backpropagation | ✅ |
+| Week | Topic | Status |
+|------|-------|--------|
+| [01](week01/) | Neurons, layers, loss, gradient descent, and the language-model idea | ✅ |
+| [02](week02/) | Backpropagation: `Value`, computation graphs, `backward()`, and MLP training | ✅ |
+| [03](week03/) | Bigram character LM: counts, probabilities, sampling, NLL, softmax, and autograd | ✅ |
+| [04](week04/) | Embeddings, MLP character LM, initialization, tanh saturation, and BatchNorm | ✅ |
+| [05](week05/) | Expanded MLP + BatchNorm graph, broadcasting, and manual backpropagation | ✅ |
 
-## Hafta 1'i çalıştır
+## Run Week 1
 
 ```bash
 cd week01
@@ -40,9 +48,9 @@ python3 adim5_gradient_descent.py
 python3 bonus_bigram_lm.py
 ```
 
-Detay için [week01/README.md](week01/README.md).
+See [week01/README.md](week01/README.md) for details.
 
-## Hafta 2'yi çalıştır
+## Run Week 2
 
 ```bash
 cd week02
@@ -53,9 +61,9 @@ python3 adim4_dogrulama.py
 python3 adim5_mlp.py
 ```
 
-Detay için [week02/README.md](week02/README.md).
+See [week02/README.md](week02/README.md) for details.
 
-## Hafta 3'ü çalıştır
+## Run Week 3
 
 ```bash
 cd week03
@@ -66,9 +74,9 @@ python adim5_turkce.py
 python bonus_trigram.py --dataset en
 ```
 
-Detay için [week03/README.md](week03/README.md).
+See [week03/README.md](week03/README.md) for details.
 
-## Hafta 4'ü çalıştır
+## Run Week 4
 
 ```bash
 python week04/adim1_mlp.py
@@ -77,27 +85,27 @@ python week04/adim3_turkce.py
 python week04/bonus_batchnorm_fold.py
 ```
 
-Detay için [week04/README.md](week04/README.md).
+See [week04/README.md](week04/README.md) for details.
 
-## Hafta 5'i çalıştır
+## Run Week 5
 
 ```bash
-python week05/adim1_autograd_referans.py
-python week05/adim2_manual_backprop.py
+python week05/step1_autograd_reference.py
+python week05/step2_manual_backprop.py
 ```
 
-Detay için [week05/README.md](week05/README.md).
+See [week05/README.md](week05/README.md) for details.
 
-## Kaynaklar
+## Sources
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
 - 3Blue1Brown — [Gradient descent, how neural networks learn](https://www.youtube.com/watch?v=IHZwWFHWa-w)
 - Andrej Karpathy — [The spelled-out intro to neural networks](https://www.youtube.com/watch?v=VMj-3S1tku0)
-- Andrej Karpathy — [micrograd](https://github.com/karpathy/micrograd) (referans repo)
+- Andrej Karpathy — [micrograd](https://github.com/karpathy/micrograd)
 - Andrej Karpathy — [The spelled-out intro to language modeling: building makemore](https://www.youtube.com/watch?v=PaCmpygFfXo)
 - Andrej Karpathy — [makemore](https://github.com/karpathy/makemore)
 - Andrej Karpathy — [Building makemore Part 2: MLP](https://www.youtube.com/watch?v=TCH_1BHY58I)
 - Andrej Karpathy — [Building makemore Part 3: Activations & Gradients, BatchNorm](https://www.youtube.com/watch?v=P6sfmUTpUmc)
 - Andrej Karpathy — [Building makemore Part 4: Becoming a Backprop Ninja](https://www.youtube.com/watch?v=q8SA3rM6ckI)
-- Bengio vd. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
+- Bengio et al. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
 - PyTorch — [Broadcasting semantics](https://pytorch.org/docs/stable/notes/broadcasting.html)

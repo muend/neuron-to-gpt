@@ -26,8 +26,8 @@ def load_words() -> List[str]:
     path = HERE.parent / "week03" / "data" / "names_en.txt"
     if not path.exists():
         raise FileNotFoundError(
-            f"{path} bulunamadı. Önce "
-            "'.\\.venv\\Scripts\\python.exe week03\\veri_hazirla.py' çalıştır."
+            f"{path} was not found. First run "
+            "'.\\.venv\\Scripts\\python.exe week03\\veri_hazirla.py'."
         )
     return [
         line.strip()
@@ -56,7 +56,7 @@ def prepare_batch(
     data_seed: int = 42,
     parameter_seed: int = 2147483647,
 ) -> Tuple[torch.Tensor, torch.Tensor, TensorMap]:
-    """İngilizce eğitim verisinden tekrarlanabilir bir minibatch ve parametreler kur."""
+    """Create a reproducible minibatch and parameters from English training data."""
     words = load_words()
     random.Random(data_seed).shuffle(words)
     n_train = int(0.8 * len(words))
@@ -72,8 +72,8 @@ def prepare_batch(
     n_hidden = 64
     fan_in = n_embd * BLOCK_SIZE
 
-    # Sıfır olmayan başlangıçlar, hatalı backward kodunun tesadüfen doğru
-    # görünmesini engeller. Bu seçim egzersiz notebook'unu takip eder.
+    # Non-zero initial values prevent an incorrect backward pass from appearing
+    # correct by accident. This follows the exercise notebook.
     parameters: TensorMap = {
         "C": torch.randn((vocab_size, n_embd), generator=g),
         "W1": torch.randn((fan_in, n_hidden), generator=g)
@@ -119,19 +119,19 @@ def forward_in_small_steps(
     parameters: TensorMap,
     eps: float = 1e-5,
 ) -> TensorMap:
-    """MLP + BatchNorm + cross entropy ileri geçişini küçük adımlara böl."""
+    """Split the MLP + BatchNorm + cross-entropy forward pass into small steps."""
     C = parameters["C"]
     W1, b1 = parameters["W1"], parameters["b1"]
     W2, b2 = parameters["W2"], parameters["b2"]
     bngain, bnbias = parameters["bngain"], parameters["bnbias"]
     n = xb.shape[0]
 
-    # Embedding ve ilk Linear katman.
+    # Embedding and the first linear layer.
     emb = C[xb]
     embcat = emb.view(emb.shape[0], -1)
     hprebn = embcat @ W1 + b1
 
-    # BatchNorm; her işlem backward zincirinde ayrı görülebilsin diye bölündü.
+    # BatchNorm, split so every operation is visible in the backward chain.
     bnmeani = (1 / n) * hprebn.sum(0, keepdim=True)
     bndiff = hprebn - bnmeani
     bndiff2 = bndiff**2
@@ -140,11 +140,11 @@ def forward_in_small_steps(
     bnraw = bndiff * bnvar_inv
     hpreact = bngain * bnraw + bnbias
 
-    # Aktivasyon ve ikinci Linear katman.
+    # Activation and the second linear layer.
     h = torch.tanh(hpreact)
     logits = h @ W2 + b2
 
-    # F.cross_entropy ile aynı hesap, türev zinciri görülsün diye açık yazıldı.
+    # Equivalent to F.cross_entropy, expanded to expose the derivative chain.
     logit_maxes = logits.max(1, keepdim=True).values
     norm_logits = logits - logit_maxes
     counts = norm_logits.exp()
@@ -179,7 +179,7 @@ def forward_in_small_steps(
 
 
 def run_autograd(graph: TensorMap, parameters: TensorMap) -> None:
-    """Ara tensor gradient'lerini sakla ve PyTorch referans backward'unu çalıştır."""
+    """Retain intermediate gradients and run PyTorch's reference backward pass."""
     for parameter in parameters.values():
         parameter.grad = None
     for name in FORWARD_NAMES:

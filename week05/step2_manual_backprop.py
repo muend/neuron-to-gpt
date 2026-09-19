@@ -5,15 +5,15 @@ from typing import Dict, Tuple
 import torch
 import torch.nn.functional as F
 
-from ortak import forward_in_small_steps, prepare_batch, run_autograd
+from common import forward_in_small_steps, prepare_batch, run_autograd
 
 
 def cmp(
     name: str, manual: torch.Tensor, target: torch.Tensor
 ) -> Tuple[bool, bool, float]:
-    """Elle bulunan gradient'i PyTorch autograd sonucuyla karşılaştır."""
+    """Compare a manually derived gradient with PyTorch autograd."""
     if target.grad is None:
-        raise RuntimeError(f"{name}.grad bulunamadı")
+        raise RuntimeError(f"{name}.grad was not found")
     exact = torch.equal(manual, target.grad)
     approximate = torch.allclose(manual, target.grad, rtol=1e-5, atol=1e-8)
     max_diff = float((manual - target.grad).abs().max().item())
@@ -30,7 +30,7 @@ def manual_backward(
     parameters: Dict[str, torch.Tensor],
     graph: Dict[str, torch.Tensor],
 ) -> Dict[str, torch.Tensor]:
-    """Forward graph'ındaki her işlemi zincir kuralıyla sondan başa türet."""
+    """Differentiate every forward operation in reverse using the chain rule."""
     C = parameters["C"]
     W1, W2 = parameters["W1"], parameters["W2"]
     bngain = parameters["bngain"]
@@ -48,7 +48,7 @@ def manual_backward(
     probs, logprobs = graph["probs"], graph["logprobs"]
     n = xb.shape[0]
 
-    # loss = hedef log-olasılıklarının negatif ortalaması.
+    # loss = negative mean of the target log probabilities.
     dlogprobs = torch.zeros_like(logprobs)
     dlogprobs[range(n), yb] = -1 / n
 
@@ -63,7 +63,7 @@ def manual_backward(
     dcounts_sum = (-counts_sum**-2) * dcounts_sum_inv
 
     # counts_sum = counts.sum(1, keepdim=True)
-    # İleri yönde sütunlar toplandı; geri yönde gradient her sütuna yayılır.
+    # Columns were summed forward; the gradient broadcasts to every column backward.
     dcounts = dcounts + torch.ones_like(counts) * dcounts_sum
 
     # counts = exp(norm_logits)
@@ -73,7 +73,7 @@ def manual_backward(
     dlogits = dnorm_logits.clone()
     dlogit_maxes = (-dnorm_logits).sum(1, keepdim=True)
 
-    # logit_maxes = logits.max(...); her satırdaki gradient yalnızca maksimuma gider.
+    # logit_maxes = logits.max(...); each row's gradient goes only to its maximum.
     max_locations = F.one_hot(
         logits.max(1).indices, num_classes=logits.shape[1]
     )
@@ -82,14 +82,14 @@ def manual_backward(
     # logits = h @ W2 + b2
     dh = dlogits @ W2.T
     dW2 = h.T @ dlogits
-    # b2 batch boyunca broadcast edildiği için gradient batch boyutunda toplanır.
+    # b2 was broadcast over the batch, so its gradient is summed over that dimension.
     db2 = dlogits.sum(0)
 
-    # h = tanh(hpreact); tanh'ın yerel türevi 1 - tanh(x)^2.
+    # h = tanh(hpreact); tanh has local derivative 1 - tanh(x)^2.
     dhpreact = (1 - h**2) * dh
 
     # hpreact = bngain * bnraw + bnbias
-    # gain ve bias batch boyunca broadcast edildi: dim=0 üzerinde sum gerekir.
+    # gain and bias were broadcast over the batch, so dim=0 must be summed.
     dbngain = (bnraw * dhpreact).sum(0, keepdim=True)
     dbnraw = bngain * dhpreact
     dbnbias = dhpreact.sum(0, keepdim=True)
@@ -102,10 +102,10 @@ def manual_backward(
     dbnvar = (-0.5 * (bnvar + 1e-5) ** -1.5) * dbnvar_inv
 
     # bnvar = bndiff2.sum(0)/(n-1)
-    # Tek satırlık varyans gradient'i bütün batch satırlarına broadcast edilir.
+    # The one-row variance gradient broadcasts to every batch row.
     dbndiff2 = torch.ones_like(bndiff2) * dbnvar / (n - 1)
 
-    # bndiff2 = bndiff**2; bndiff iki farklı kola gittiği için += mantığı vardır.
+    # bndiff2 = bndiff**2; bndiff feeds two branches, so their gradients add.
     dbndiff = dbndiff + 2 * bndiff * dbndiff2
 
     # bndiff = hprebn - bnmeani
@@ -113,7 +113,7 @@ def manual_backward(
     dbnmeani = (-dbndiff).sum(0, keepdim=True)
 
     # bnmeani = hprebn.sum(0)/n
-    # Mean batch'i topladı; geri dönüşte gradient yeniden her satıra yayılır.
+    # The mean reduced the batch; backward broadcasts its gradient to every row.
     dhprebn = dhprebn + torch.ones_like(hprebn) * dbnmeani / n
 
     # hprebn = embcat @ W1 + b1
@@ -121,10 +121,10 @@ def manual_backward(
     dW1 = embcat.T @ dhprebn
     db1 = dhprebn.sum(0)
 
-    # embcat = emb.view(...): view yalnızca şekli değiştirir.
+    # embcat = emb.view(...): view only changes shape.
     demb = dembcat.view(emb.shape)
 
-    # emb = C[xb]: aynı karakter birden fazla kez kullanıldıysa katkılar toplanır.
+    # emb = C[xb]: repeated character indices accumulate into the same row of dC.
     dC = torch.zeros_like(C)
     for row in range(xb.shape[0]):
         for column in range(xb.shape[1]):
@@ -171,20 +171,20 @@ def main() -> None:
     exact_count = 0
     approximate_count = 0
 
-    print("GÖREV 2 — Elle backpropagation / PyTorch karşılaştırması")
+    print("TASK 2 - Manual backpropagation / PyTorch comparison")
     print(f"Loss: {graph['loss'].item():.6f}\n")
     for name, gradient in manual.items():
         exact, approximate, _ = cmp(name, gradient, targets[name])
         exact_count += int(exact)
         approximate_count += int(approximate)
-        assert approximate, f"{name} gradient'i PyTorch ile eşleşmedi"
+        assert approximate, f"{name} gradient does not match PyTorch"
 
     total = len(manual)
     print(
-        f"\nSONUÇ: {total}/{total} gradient doğrulandı "
+        f"\nRESULT: {total}/{total} gradients verified "
         f"({exact_count} exact, {approximate_count} approximate)."
     )
-    print("Elle yazılan backward zinciri autograd ile eşleşiyor.")
+    print("The manually derived backward chain matches autograd.")
 
 
 if __name__ == "__main__":
