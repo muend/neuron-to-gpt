@@ -12,7 +12,7 @@ cd neuron-to-gpt
 python3 --version
 ```
 
-Hafta 1–2 çekirdek kodu standart kütüphane ile çalışır. Hafta 3–4 için:
+Hafta 1–2 çekirdek kodu standart kütüphane ile çalışır. Hafta 3–5 için:
 
 ```bash
 pip install -r week03/requirements.txt
@@ -26,6 +26,7 @@ pip install -r week03/requirements.txt
 | [02](week02/) | Backpropagation: `Value`, computation graph, `backward()`, MLP eğitimi (micrograd) | ✅ |
 | [03](week03/) | Bigram character LM: counts, probability, sampling, NLL, one-hot, softmax, autograd; Türkçe model + trigram bonus | ✅ |
 | [04](week04/) | Embedding + MLP character LM; minibatch, split, init, tanh saturation, BatchNorm ve Türkçe model | ✅ |
+| [05](week05/) | MLP + BatchNorm forward graph'ı; ara gradient'ler, broadcasting ve elle backpropagation | ✅ |
 
 ## Hafta 1'i çalıştır
 
@@ -78,6 +79,15 @@ python week04/bonus_batchnorm_fold.py
 
 Detay için [week04/README.md](week04/README.md).
 
+## Hafta 5'i çalıştır
+
+```bash
+python week05/adim1_autograd_referans.py
+python week05/adim2_manual_backprop.py
+```
+
+Detay için [week05/README.md](week05/README.md).
+
 ## Kaynaklar
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
@@ -88,5 +98,6 @@ Detay için [week04/README.md](week04/README.md).
 - Andrej Karpathy — [makemore](https://github.com/karpathy/makemore)
 - Andrej Karpathy — [Building makemore Part 2: MLP](https://www.youtube.com/watch?v=TCH_1BHY58I)
 - Andrej Karpathy — [Building makemore Part 3: Activations & Gradients, BatchNorm](https://www.youtube.com/watch?v=P6sfmUTpUmc)
+- Andrej Karpathy — [Building makemore Part 4: Becoming a Backprop Ninja](https://www.youtube.com/watch?v=q8SA3rM6ckI)
 - Bengio vd. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
 - PyTorch — [Broadcasting semantics](https://pytorch.org/docs/stable/notes/broadcasting.html)
