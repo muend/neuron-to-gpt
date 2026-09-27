@@ -9,8 +9,8 @@ without machine-learning libraries. Week 3 moves to PyTorch to show how the
 previously implemented `backward()` mechanism scales from scalar values to
 tensors.
 
-Weeks 1–4 retain their original filenames for backward compatibility. All new
-Week 5 files and commands use English naming consistently.
+Weeks 1–4 retain their original filenames for backward compatibility. New
+Week 5–6 files and commands use English naming consistently.
 
 ## Setup
 
@@ -20,7 +20,7 @@ cd neuron-to-gpt
 python3 --version
 ```
 
-Weeks 1–2 use only the standard library. For Weeks 3–5:
+Weeks 1–2 use only the standard library. For Weeks 3–6:
 
 ```bash
 pip install -r week03/requirements.txt
@@ -35,6 +35,7 @@ pip install -r week03/requirements.txt
 | [03](week03/) | Bigram character LM: counts, probabilities, sampling, NLL, softmax, and autograd | ✅ |
 | [04](week04/) | Embeddings, MLP character LM, initialization, tanh saturation, and BatchNorm | ✅ |
 | [05](week05/) | Expanded MLP + BatchNorm graph, broadcasting, and manual backpropagation | ✅ |
+| [06](week06/) | Custom layer classes, eight-character context, and a WaveNet-style hierarchy | ✅ |
 
 ## Run Week 1
 
@@ -96,6 +97,15 @@ python week05/step2_manual_backprop.py
 
 See [week05/README.md](week05/README.md) for details.
 
+## Run Week 6
+
+```bash
+python week06/test_layers.py
+python week06/run_experiments.py
+```
+
+See [week06/README.md](week06/README.md) for the model shapes and recorded results.
+
 ## Sources
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
@@ -107,5 +117,6 @@ See [week05/README.md](week05/README.md) for details.
 - Andrej Karpathy — [Building makemore Part 2: MLP](https://www.youtube.com/watch?v=TCH_1BHY58I)
 - Andrej Karpathy — [Building makemore Part 3: Activations & Gradients, BatchNorm](https://www.youtube.com/watch?v=P6sfmUTpUmc)
 - Andrej Karpathy — [Building makemore Part 4: Becoming a Backprop Ninja](https://www.youtube.com/watch?v=q8SA3rM6ckI)
+- Andrej Karpathy — [Building makemore Part 5: Building a WaveNet](https://www.youtube.com/watch?v=t3YJ5hKiMQ0)
 - Bengio et al. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
 - PyTorch — [Broadcasting semantics](https://pytorch.org/docs/stable/notes/broadcasting.html)
