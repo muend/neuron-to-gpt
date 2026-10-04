@@ -10,7 +10,7 @@ previously implemented `backward()` mechanism scales from scalar values to
 tensors.
 
 Weeks 1–4 retain their original filenames for backward compatibility. New
-Week 5–6 files and commands use English naming consistently.
+Week 5–7 files and commands use English naming consistently.
 
 ## Setup
 
@@ -20,7 +20,7 @@ cd neuron-to-gpt
 python3 --version
 ```
 
-Weeks 1–2 use only the standard library. For Weeks 3–6:
+Weeks 1–2 use only the standard library. For Weeks 3–7:
 
 ```bash
 pip install -r week03/requirements.txt
@@ -36,6 +36,7 @@ pip install -r week03/requirements.txt
 | [04](week04/) | Embeddings, MLP character LM, initialization, tanh saturation, and BatchNorm | ✅ |
 | [05](week05/) | Expanded MLP + BatchNorm graph, broadcasting, and manual backpropagation | ✅ |
 | [06](week06/) | Custom layer classes, eight-character context, and a WaveNet-style hierarchy | ✅ |
+| [07](week07/) | Tiny Shakespeare, character batches, causal averages and single-head self-attention | ✅ |
 
 ## Run Week 1
 
@@ -106,6 +107,19 @@ python week06/run_experiments.py
 
 See [week06/README.md](week06/README.md) for the model shapes and recorded results.
 
+## Run Week 7
+
+```bash
+python week07/data.py
+python week07/step2_attention_math.py
+python week07/test_attention.py
+python week07/run_experiments.py
+python week07/step3_inspect_attention.py
+```
+
+See [week07/README.md](week07/README.md) for attention weights, scaling examples
+and measured bigram/attention validation losses.
+
 ## Sources
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
@@ -118,5 +132,6 @@ See [week06/README.md](week06/README.md) for the model shapes and recorded resul
 - Andrej Karpathy — [Building makemore Part 3: Activations & Gradients, BatchNorm](https://www.youtube.com/watch?v=P6sfmUTpUmc)
 - Andrej Karpathy — [Building makemore Part 4: Becoming a Backprop Ninja](https://www.youtube.com/watch?v=q8SA3rM6ckI)
 - Andrej Karpathy — [Building makemore Part 5: Building a WaveNet](https://www.youtube.com/watch?v=t3YJ5hKiMQ0)
+- Andrej Karpathy — [Let's build GPT](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 - Bengio et al. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
 - PyTorch — [Broadcasting semantics](https://pytorch.org/docs/stable/notes/broadcasting.html)
