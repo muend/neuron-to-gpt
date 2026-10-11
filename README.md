@@ -134,6 +134,8 @@ Both larger models completed 5,000 updates on an A100 in Colab. Final validation
 NLL is 1.4723 for Shakespeare and 1.6239 for the selected Turkish collection;
 these cross-language losses are not a direct quality ranking. Reviewed metrics,
 loss plots and generated samples are in [week08/results/gpu](week08/results/gpu).
+The optional [Gradio model lab](week08/PANEL.md) displays this evidence and enables
+live generation when the owner's matching model checkpoints are connected.
 
 ## Sources
 

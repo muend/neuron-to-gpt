@@ -126,6 +126,14 @@ python week08/import_gpu_results.py --archive "C:/Users/Excalibur/Downloads/week
 
 The importer accepts this two-run export format only, rejects unexpected entries and inconsistent metrics, checks local corpus hashes, and never publishes its private provenance manifest. Identical re-imports are safe; conflicting existing results are not overwritten. If the private corpora are unavailable, `--skip-local-corpus-check` explicitly records metadata-only verification. `summarize_results.py` describes the corpus metadata saved in each result, not unrelated current local files.
 
+## Optional visual panel
+
+The Gradio model lab shows recorded training evidence, generated examples and the architecture progression. Connect the existing owner-trusted `best.pt` files to enable live text generation; no retraining is necessary. Without weights, Generate is disabled and samples are explicitly labeled as recorded. See [PANEL.md](PANEL.md) for local Windows startup, checkpoint placement and step-by-step Colab use.
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\week08\start_panel.ps1
+```
+
 ## References
 
 The implementation was written before consulting the finished reference for comparison.

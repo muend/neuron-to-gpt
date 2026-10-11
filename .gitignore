@@ -30,3 +30,7 @@ week08/data/turkish_corpus.zip
 week08/data/*.zip
 week08/data/*.txt
 week08/outputs/
+# Optional local Gradio runtime and cache; never publish installed packages.
+week08/.panel_dependencies/
+week08/.panel_cache/
+week08/.panel_venv/

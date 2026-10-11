@@ -1,0 +1,2 @@
+# Optional UI dependencies; training scripts do not require Gradio.
+gradio>=6.30,<7
