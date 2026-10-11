@@ -32,6 +32,15 @@ try {
     if ($previousPythonPath) { $packagePaths += $previousPythonPath }
     $env:PYTHONPATH = $packagePaths -join [IO.Path]::PathSeparator
     $env:PYTHONIOENCODING = "utf-8"
+    if (-not $CheckpointRoot) {
+        $localCheckpointRoot = Join-Path $panelDirectory "outputs\checkpoints"
+        $englishCheckpoint = Join-Path $localCheckpointRoot "en_a100_layernorm\best.pt"
+        $turkishCheckpoint = Join-Path $localCheckpointRoot "tr_a100_layernorm\best.pt"
+        if ((Test-Path -LiteralPath $englishCheckpoint) -or (Test-Path -LiteralPath $turkishCheckpoint)) {
+            $CheckpointRoot = $localCheckpointRoot
+            Write-Host "Connecting the owner's local model checkpoints..."
+        }
+    }
     $panelArguments = @("-u", (Join-Path $panelDirectory "panel.py"), "--device", $Device, "--port", "$Port")
     if (-not $NoBrowser) { $panelArguments += "--open" }
     if ($CheckpointRoot) { $panelArguments += @("--checkpoint-root", $CheckpointRoot) }
