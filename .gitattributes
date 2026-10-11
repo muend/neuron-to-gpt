@@ -1,0 +1,3 @@
+# Preserve the imported export bytes across Windows/Linux checkouts.
+# The importer checks byte equality before an idempotent re-import.
+week08/results/gpu/** -text

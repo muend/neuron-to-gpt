@@ -130,7 +130,10 @@ python week08/inspect_model.py
 
 See [week08/README.md](week08/README.md) for the six-stage measured comparison,
 user-selected Nazim Hikmet data preparation and the Colab GPU training notebook.
-Larger GPU runs remain pending until they are executed in Colab.
+Both larger models completed 5,000 updates on an A100 in Colab. Final validation
+NLL is 1.4723 for Shakespeare and 1.6239 for the selected Turkish collection;
+these cross-language losses are not a direct quality ranking. Reviewed metrics,
+loss plots and generated samples are in [week08/results/gpu](week08/results/gpu).
 
 ## Sources
 

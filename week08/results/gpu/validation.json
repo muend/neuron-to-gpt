@@ -1,0 +1,33 @@
+{
+  "assessment": "share_with_noted_caveats",
+  "archive_sha256": "94560af2d799e11fbfbba3c07e638eae45e7e3882fd038c7ee19dd1046683f78",
+  "verified": [
+    {
+      "run": "en_a100_layernorm",
+      "parameter_count": 4833345,
+      "history_checkpoints": 10,
+      "best_step": 4500,
+      "corpus_sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed",
+      "local_corpus_verified": true
+    },
+    {
+      "run": "tr_a100_layernorm",
+      "parameter_count": 4860534,
+      "history_checkpoints": 10,
+      "best_step": 5000,
+      "corpus_sha256": "95eed4275502beda5e18590c72abd2e9c301f35a975bc6aadd12ef0942ed3e5a",
+      "local_corpus_verified": true
+    }
+  ],
+  "total_training_seconds": 872.0339502639995,
+  "total_elapsed_seconds": 1077.5704024169995,
+  "caveats": [
+    "Metrics are user-returned Colab results, not independently rerun GPU evaluation.",
+    "No checkpoints were included in the export; loss and sample claims were checked against metadata/history.",
+    "Loss plots must also be visually inspected against the numerical histories.",
+    "English and Turkish NLL values do not directly rank language quality.",
+    "The scaled GPU run changes model, context, iterations and precision relative to CPU ablations.",
+    "Turkish OCR noise and the contiguous genre/period split remain limitations.",
+    "Elapsed seconds exclude generation/plotting and preprocessing; they are not the whole Colab session."
+  ]
+}

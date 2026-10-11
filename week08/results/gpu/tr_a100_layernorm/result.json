@@ -1,0 +1,45 @@
+{
+  "status": "measured",
+  "model_config": {
+    "vocab_size": 118,
+    "stage": "layernorm",
+    "n_embd": 256,
+    "n_head": 8,
+    "n_layer": 6,
+    "block_size": 256,
+    "dropout": 0.2,
+    "initialize_small": true
+  },
+  "training_config": {
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "seed": 1337,
+    "precision": "bf16",
+    "eval_batches": 200
+  },
+  "steps": 5000,
+  "eval_batches": 200,
+  "skipped_updates": 0,
+  "optimizer_updates": 5000,
+  "final_train_nll": 1.3816855680942535,
+  "final_val_nll": 1.6238540321588517,
+  "best_val_nll": 1.6238540321588517,
+  "parameters": 4860534,
+  "training_seconds": 436.4585977859988,
+  "elapsed_seconds": 539.5623435859998,
+  "device": "cuda",
+  "hardware": "NVIDIA A100-SXM4-40GB",
+  "torch_version": "2.11.0+cu130",
+  "corpus": {
+    "sha256": "95eed4275502beda5e18590c72abd2e9c301f35a975bc6aadd12ef0942ed3e5a",
+    "bytes": 2072197,
+    "characters": 1904245,
+    "vocabulary": 118,
+    "split_sizes": {
+      "train": 1713820,
+      "val": 190425
+    }
+  },
+  "preset": "a100",
+  "sample_checkpoint_step": 5000
+}

@@ -4,8 +4,6 @@ import argparse
 import json
 from pathlib import Path
 
-from data import describe_data
-
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -22,7 +20,11 @@ def main():
         lines.append(f"| {name.as_posix()} | {result['status']} | {result['parameters']:,} | {result['steps']} "
                      f"| {result['final_val_nll']:.4f} | {result['best_val_nll']:.4f} "
                      f"| {result['training_seconds']:.1f} | {result['hardware']} |")
-    lines += ["", "## Data", "", "```json", json.dumps(describe_data(), indent=2), "```", "",
+    # Describe the actual training inputs in the results, not whichever local files exist now.
+    corpora = {}
+    for name, result in rows:
+        corpora[str(name.as_posix())] = result["corpus"]
+    lines += ["", "## Training data recorded in each result", "", "```json", json.dumps(corpora, indent=2), "```", "",
               "## Generated text (best validation checkpoints)", ""]
     for name, result in rows:
         sample = args.output_root / name / "sample.txt"
