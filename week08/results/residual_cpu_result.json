@@ -1,0 +1,44 @@
+{
+  "status": "measured",
+  "model_config": {
+    "vocab_size": 65,
+    "stage": "residual",
+    "n_embd": 64,
+    "n_head": 4,
+    "n_layer": 1,
+    "block_size": 32,
+    "dropout": 0,
+    "initialize_small": false
+  },
+  "training_config": {
+    "batch_size": 32,
+    "learning_rate": 0.003,
+    "seed": 1337,
+    "precision": "none"
+  },
+  "steps": 4000,
+  "eval_batches": 200,
+  "skipped_updates": 0,
+  "optimizer_updates": 4000,
+  "final_train_nll": 1.705108450651169,
+  "final_val_nll": 1.884607605934143,
+  "best_val_nll": 1.884607605934143,
+  "parameters": 59969,
+  "training_seconds": 45.06127840009867,
+  "elapsed_seconds": 56.73872989998199,
+  "device": "cpu",
+  "hardware": "CPU",
+  "torch_version": "2.14.0+cpu",
+  "corpus": {
+    "sha256": "86c4e6aa9db7c042ec79f339dcb96d42b0075e16b8fc2e86bf0ca57e2dc565ed",
+    "bytes": 1115394,
+    "characters": 1115394,
+    "vocabulary": 65,
+    "split_sizes": {
+      "train": 1003854,
+      "val": 111540
+    }
+  },
+  "preset": "ablation",
+  "sample_checkpoint_step": 4000
+}

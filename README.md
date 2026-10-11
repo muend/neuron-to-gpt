@@ -120,6 +120,18 @@ python week07/step3_inspect_attention.py
 See [week07/README.md](week07/README.md) for attention weights, scaling examples
 and measured bigram/attention validation losses.
 
+## Run Week 8
+
+```bash
+python week08/prepare_data.py --english-only
+python week08/test_gpt.py
+python week08/inspect_model.py
+```
+
+See [week08/README.md](week08/README.md) for the six-stage measured comparison,
+user-selected Nazim Hikmet data preparation and the Colab GPU training notebook.
+Larger GPU runs remain pending until they are executed in Colab.
+
 ## Sources
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)

@@ -1,0 +1,13 @@
+{
+  "selection_id": "nazim_hikmet",
+  "sources": [
+    {
+      "file": "selected_work.txt",
+      "title": "REPLACE with the selected work title",
+      "author_id": "nazim_hikmet",
+      "genre": "poetry, epic, theatre or prose",
+      "source_reference": "REPLACE with the edition or authorized source reference",
+      "permission_basis": "REPLACE with the actual basis for using this text"
+    }
+  ]
+}

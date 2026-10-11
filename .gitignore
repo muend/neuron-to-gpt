@@ -20,3 +20,13 @@ week07/data/input.txt
 week07/outputs/*.pt
 # Keep the small Week 7 result figures as submission evidence.
 !week07/outputs/*.png
+
+# Week 8 corpora are regenerated/cached; GPU checkpoints must not enter Git.
+week08/data/source_cache/
+week08/data/nazim_sources/
+week08/data/excluded/
+week08/data/corpus_manifest.json
+week08/data/turkish_corpus.zip
+week08/data/*.zip
+week08/data/*.txt
+week08/outputs/
