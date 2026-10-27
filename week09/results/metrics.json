@@ -1,0 +1,1779 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "python": "3.12.10",
+    "regex": "2026.9.29",
+    "tiktoken": "0.14.0"
+  },
+  "settings": {
+    "vocab_size": 512,
+    "train_fraction": 0.9,
+    "split_unit": "Unicode code point",
+    "normalization": "none"
+  },
+  "corpus": {
+    "path": "week08/data/turkish.txt",
+    "bytes": 2072197,
+    "characters": 1904245,
+    "distinct_characters": 118,
+    "sha256": "95eed4275502beda5e18590c72abd2e9c301f35a975bc6aadd12ef0942ed3e5a",
+    "training_sha256": "f69994ca616ce7b374a85e67aac509e6ab11a8aefc1dab748cb980f935d00baa",
+    "validation_sha256": "095f08b453006f32020c4887dd3110fe56955023627d9e9df54c98e377f4fefb"
+  },
+  "unicode": [
+    {
+      "position": 0,
+      "character": "Ç",
+      "code_point": "U+00C7",
+      "utf8": [
+        195,
+        135
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 1,
+      "character": "ı",
+      "code_point": "U+0131",
+      "utf8": [
+        196,
+        177
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 2,
+      "character": "ğ",
+      "code_point": "U+011F",
+      "utf8": [
+        196,
+        159
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 3,
+      "character": ",",
+      "code_point": "U+002C",
+      "utf8": [
+        44
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 4,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 5,
+      "character": "ç",
+      "code_point": "U+00E7",
+      "utf8": [
+        195,
+        167
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 6,
+      "character": "a",
+      "code_point": "U+0061",
+      "utf8": [
+        97
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 7,
+      "character": "y",
+      "code_point": "U+0079",
+      "utf8": [
+        121
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 8,
+      "character": ",",
+      "code_point": "U+002C",
+      "utf8": [
+        44
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 9,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 10,
+      "character": "ö",
+      "code_point": "U+00F6",
+      "utf8": [
+        195,
+        182
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 11,
+      "character": "ğ",
+      "code_point": "U+011F",
+      "utf8": [
+        196,
+        159
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 12,
+      "character": "l",
+      "code_point": "U+006C",
+      "utf8": [
+        108
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 13,
+      "character": "e",
+      "code_point": "U+0065",
+      "utf8": [
+        101
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 14,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 15,
+      "character": "ı",
+      "code_point": "U+0131",
+      "utf8": [
+        196,
+        177
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 16,
+      "character": "ş",
+      "code_point": "U+015F",
+      "utf8": [
+        197,
+        159
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 17,
+      "character": "ı",
+      "code_point": "U+0131",
+      "utf8": [
+        196,
+        177
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 18,
+      "character": "ğ",
+      "code_point": "U+011F",
+      "utf8": [
+        196,
+        159
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 19,
+      "character": "ı",
+      "code_point": "U+0131",
+      "utf8": [
+        196,
+        177
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 20,
+      "character": ",",
+      "code_point": "U+002C",
+      "utf8": [
+        44
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 21,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 22,
+      "character": "ş",
+      "code_point": "U+015F",
+      "utf8": [
+        197,
+        159
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 23,
+      "character": "ü",
+      "code_point": "U+00FC",
+      "utf8": [
+        195,
+        188
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 24,
+      "character": "p",
+      "code_point": "U+0070",
+      "utf8": [
+        112
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 25,
+      "character": "h",
+      "code_point": "U+0068",
+      "utf8": [
+        104
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 26,
+      "character": "e",
+      "code_point": "U+0065",
+      "utf8": [
+        101
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 27,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 28,
+      "character": "v",
+      "code_point": "U+0076",
+      "utf8": [
+        118
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 29,
+      "character": "e",
+      "code_point": "U+0065",
+      "utf8": [
+        101
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 30,
+      "character": " ",
+      "code_point": "U+0020",
+      "utf8": [
+        32
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 31,
+      "character": "ü",
+      "code_point": "U+00FC",
+      "utf8": [
+        195,
+        188
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 32,
+      "character": "z",
+      "code_point": "U+007A",
+      "utf8": [
+        122
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 33,
+      "character": "ü",
+      "code_point": "U+00FC",
+      "utf8": [
+        195,
+        188
+      ],
+      "byte_count": 2
+    },
+    {
+      "position": 34,
+      "character": "m",
+      "code_point": "U+006D",
+      "utf8": [
+        109
+      ],
+      "byte_count": 1
+    },
+    {
+      "position": 35,
+      "character": ".",
+      "code_point": "U+002E",
+      "utf8": [
+        46
+      ],
+      "byte_count": 1
+    }
+  ],
+  "tokenizers": {
+    "basic": {
+      "vocab_size": 512,
+      "merges": 256,
+      "training_seconds": 109.03997379995417,
+      "first_20_merges": [
+        {
+          "id": 256,
+          "left": {
+            "text": "�",
+            "hex": "c4"
+          },
+          "right": {
+            "text": "�",
+            "hex": "b1"
+          },
+          "merged": {
+            "text": "ı",
+            "hex": "c4 b1"
+          }
+        },
+        {
+          "id": 257,
+          "left": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": "n ",
+            "hex": "6e 20"
+          }
+        },
+        {
+          "id": 258,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "bc"
+          },
+          "merged": {
+            "text": "ü",
+            "hex": "c3 bc"
+          }
+        },
+        {
+          "id": 259,
+          "left": {
+            "text": "�",
+            "hex": "c5"
+          },
+          "right": {
+            "text": "�",
+            "hex": "9f"
+          },
+          "merged": {
+            "text": "ş",
+            "hex": "c5 9f"
+          }
+        },
+        {
+          "id": 260,
+          "left": {
+            "text": "e",
+            "hex": "65"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": "e ",
+            "hex": "65 20"
+          }
+        },
+        {
+          "id": 261,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "ar",
+            "hex": "61 72"
+          }
+        },
+        {
+          "id": 262,
+          "left": {
+            "text": "e",
+            "hex": "65"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "er",
+            "hex": "65 72"
+          }
+        },
+        {
+          "id": 263,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "an",
+            "hex": "61 6e"
+          }
+        },
+        {
+          "id": 264,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": "a ",
+            "hex": "61 20"
+          }
+        },
+        {
+          "id": 265,
+          "left": {
+            "text": "i",
+            "hex": "69"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": "i ",
+            "hex": "69 20"
+          }
+        },
+        {
+          "id": 266,
+          "left": {
+            "text": ".",
+            "hex": "2e"
+          },
+          "right": {
+            "text": "\n",
+            "hex": "0a"
+          },
+          "merged": {
+            "text": ".\n",
+            "hex": "2e 0a"
+          }
+        },
+        {
+          "id": 267,
+          "left": {
+            "text": "i",
+            "hex": "69"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "ir",
+            "hex": "69 72"
+          }
+        },
+        {
+          "id": 268,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "a7"
+          },
+          "merged": {
+            "text": "ç",
+            "hex": "c3 a7"
+          }
+        },
+        {
+          "id": 269,
+          "left": {
+            "text": "i",
+            "hex": "69"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "in",
+            "hex": "69 6e"
+          }
+        },
+        {
+          "id": 270,
+          "left": {
+            "text": ",",
+            "hex": "2c"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": ", ",
+            "hex": "2c 20"
+          }
+        },
+        {
+          "id": 271,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "k",
+            "hex": "6b"
+          },
+          "merged": {
+            "text": "ak",
+            "hex": "61 6b"
+          }
+        },
+        {
+          "id": 272,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "l",
+            "hex": "6c"
+          },
+          "merged": {
+            "text": "al",
+            "hex": "61 6c"
+          }
+        },
+        {
+          "id": 273,
+          "left": {
+            "text": "e",
+            "hex": "65"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "en",
+            "hex": "65 6e"
+          }
+        },
+        {
+          "id": 274,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "b6"
+          },
+          "merged": {
+            "text": "ö",
+            "hex": "c3 b6"
+          }
+        },
+        {
+          "id": 275,
+          "left": {
+            "text": "ı",
+            "hex": "c4 b1"
+          },
+          "right": {
+            "text": " ",
+            "hex": "20"
+          },
+          "merged": {
+            "text": "ı ",
+            "hex": "c4 b1 20"
+          }
+        }
+      ],
+      "train": {
+        "bytes": 1860597,
+        "characters": 1713820,
+        "tokens": 941336,
+        "bytes_per_token": 1.9765492873957864,
+        "characters_per_token": 1.820625154036391,
+        "roundtrip": true
+      },
+      "validation": {
+        "bytes": 211600,
+        "characters": 190425,
+        "tokens": 105098,
+        "bytes_per_token": 2.013358960208567,
+        "characters_per_token": 1.8118803402538584,
+        "roundtrip": true
+      }
+    },
+    "regex": {
+      "vocab_size": 512,
+      "merges": 256,
+      "training_seconds": 85.3668174999766,
+      "first_20_merges": [
+        {
+          "id": 256,
+          "left": {
+            "text": "�",
+            "hex": "c4"
+          },
+          "right": {
+            "text": "�",
+            "hex": "b1"
+          },
+          "merged": {
+            "text": "ı",
+            "hex": "c4 b1"
+          }
+        },
+        {
+          "id": 257,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "bc"
+          },
+          "merged": {
+            "text": "ü",
+            "hex": "c3 bc"
+          }
+        },
+        {
+          "id": 258,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "an",
+            "hex": "61 6e"
+          }
+        },
+        {
+          "id": 259,
+          "left": {
+            "text": "�",
+            "hex": "c5"
+          },
+          "right": {
+            "text": "�",
+            "hex": "9f"
+          },
+          "merged": {
+            "text": "ş",
+            "hex": "c5 9f"
+          }
+        },
+        {
+          "id": 260,
+          "left": {
+            "text": " ",
+            "hex": "20"
+          },
+          "right": {
+            "text": "b",
+            "hex": "62"
+          },
+          "merged": {
+            "text": " b",
+            "hex": "20 62"
+          }
+        },
+        {
+          "id": 261,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "ar",
+            "hex": "61 72"
+          }
+        },
+        {
+          "id": 262,
+          "left": {
+            "text": "e",
+            "hex": "65"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "er",
+            "hex": "65 72"
+          }
+        },
+        {
+          "id": 263,
+          "left": {
+            "text": "i",
+            "hex": "69"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "in",
+            "hex": "69 6e"
+          }
+        },
+        {
+          "id": 264,
+          "left": {
+            "text": ".",
+            "hex": "2e"
+          },
+          "right": {
+            "text": "\n",
+            "hex": "0a"
+          },
+          "merged": {
+            "text": ".\n",
+            "hex": "2e 0a"
+          }
+        },
+        {
+          "id": 265,
+          "left": {
+            "text": "e",
+            "hex": "65"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "en",
+            "hex": "65 6e"
+          }
+        },
+        {
+          "id": 266,
+          "left": {
+            "text": " ",
+            "hex": "20"
+          },
+          "right": {
+            "text": "k",
+            "hex": "6b"
+          },
+          "merged": {
+            "text": " k",
+            "hex": "20 6b"
+          }
+        },
+        {
+          "id": 267,
+          "left": {
+            "text": "i",
+            "hex": "69"
+          },
+          "right": {
+            "text": "r",
+            "hex": "72"
+          },
+          "merged": {
+            "text": "ir",
+            "hex": "69 72"
+          }
+        },
+        {
+          "id": 268,
+          "left": {
+            "text": " ",
+            "hex": "20"
+          },
+          "right": {
+            "text": "d",
+            "hex": "64"
+          },
+          "merged": {
+            "text": " d",
+            "hex": "20 64"
+          }
+        },
+        {
+          "id": 269,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "a7"
+          },
+          "merged": {
+            "text": "ç",
+            "hex": "c3 a7"
+          }
+        },
+        {
+          "id": 270,
+          "left": {
+            "text": "ı",
+            "hex": "c4 b1"
+          },
+          "right": {
+            "text": "n",
+            "hex": "6e"
+          },
+          "merged": {
+            "text": "ın",
+            "hex": "c4 b1 6e"
+          }
+        },
+        {
+          "id": 271,
+          "left": {
+            "text": " ",
+            "hex": "20"
+          },
+          "right": {
+            "text": "g",
+            "hex": "67"
+          },
+          "merged": {
+            "text": " g",
+            "hex": "20 67"
+          }
+        },
+        {
+          "id": 272,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "k",
+            "hex": "6b"
+          },
+          "merged": {
+            "text": "ak",
+            "hex": "61 6b"
+          }
+        },
+        {
+          "id": 273,
+          "left": {
+            "text": "a",
+            "hex": "61"
+          },
+          "right": {
+            "text": "l",
+            "hex": "6c"
+          },
+          "merged": {
+            "text": "al",
+            "hex": "61 6c"
+          }
+        },
+        {
+          "id": 274,
+          "left": {
+            "text": " ",
+            "hex": "20"
+          },
+          "right": {
+            "text": "y",
+            "hex": "79"
+          },
+          "merged": {
+            "text": " y",
+            "hex": "20 79"
+          }
+        },
+        {
+          "id": 275,
+          "left": {
+            "text": "�",
+            "hex": "c3"
+          },
+          "right": {
+            "text": "�",
+            "hex": "b6"
+          },
+          "merged": {
+            "text": "ö",
+            "hex": "c3 b6"
+          }
+        }
+      ],
+      "train": {
+        "bytes": 1860597,
+        "characters": 1713820,
+        "tokens": 942644,
+        "bytes_per_token": 1.9738066544740114,
+        "characters_per_token": 1.8180988793224164,
+        "roundtrip": true
+      },
+      "validation": {
+        "bytes": 211600,
+        "characters": 190425,
+        "tokens": 105095,
+        "bytes_per_token": 2.0134164327513204,
+        "characters_per_token": 1.8119320614681955,
+        "roundtrip": true
+      }
+    }
+  },
+  "roundtrip": {
+    "text": "İstanbul'da çığ, öğle ışığı ve üzüm var. 🧠🤖🙂",
+    "all_equal": true,
+    "regex_ids": [
+      454,
+      331,
+      258,
+      98,
+      378,
+      501,
+      97,
+      316,
+      256,
+      301,
+      44,
+      355,
+      301,
+      326,
+      32,
+      344,
+      256,
+      301,
+      256,
+      369,
+      32,
+      349,
+      363,
+      409,
+      46,
+      32,
+      240,
+      159,
+      167,
+      160,
+      240,
+      159,
+      164,
+      150,
+      240,
+      159,
+      153,
+      130
+    ],
+    "invalid_utf8_replacement": "�",
+    "strict_error": "UnicodeDecodeError"
+  },
+  "regex_examples": {
+    "Ankara'dan": [
+      "Ankara",
+      "'d",
+      "an"
+    ],
+    "İstanbul'da": [
+      "İstanbul",
+      "'d",
+      "a"
+    ],
+    "Ankara’dan": [
+      "Ankara",
+      "’dan"
+    ],
+    "İstanbul’da": [
+      "İstanbul",
+      "’da"
+    ],
+    "1234567890": [
+      "123",
+      "456",
+      "789",
+      "0"
+    ]
+  },
+  "merge_comparison": {
+    "same_result_at_same_position_first_20": 5,
+    "shared_learned_byte_strings": 138
+  },
+  "paragraph_comparison": {
+    "cl100k_base_tr": {
+      "words": 36,
+      "characters": 297,
+      "bytes": 332,
+      "tokens": 122,
+      "tokens_per_word": 3.388888888888889,
+      "ids": [
+        60908,
+        19972,
+        1494,
+        71344,
+        4265,
+        276,
+        39521,
+        46216,
+        26248,
+        74700,
+        273,
+        43019,
+        318,
+        13,
+        39521,
+        73855,
+        18693,
+        56317,
+        2649,
+        7370,
+        46937,
+        1029,
+        64,
+        7173,
+        84,
+        48497,
+        372,
+        26,
+        15606,
+        7792,
+        668,
+        829,
+        71,
+        35376,
+        379,
+        5297,
+        2448,
+        88,
+        2448,
+        79,
+        67048,
+        3209,
+        40957,
+        15606,
+        597,
+        2642,
+        15686,
+        18578,
+        352,
+        27615,
+        83,
+        1609,
+        13,
+        816,
+        337,
+        3395,
+        3178,
+        8334,
+        359,
+        936,
+        5509,
+        88307,
+        11257,
+        372,
+        16530,
+        370,
+        3862,
+        5320,
+        98602,
+        46800,
+        6520,
+        728,
+        64,
+        40528,
+        17544,
+        11257,
+        38404,
+        48980,
+        78587,
+        76,
+        8093,
+        3862,
+        16947,
+        84,
+        48497,
+        3178,
+        13,
+        16762,
+        7370,
+        309,
+        49996,
+        294,
+        3029,
+        303,
+        2448,
+        11257,
+        49621,
+        451,
+        539,
+        14115,
+        38404,
+        3862,
+        52119,
+        5797,
+        839,
+        318,
+        5320,
+        17372,
+        11257,
+        9484,
+        1609,
+        1565,
+        25877,
+        264,
+        458,
+        76,
+        273,
+        2343,
+        4355,
+        48497,
+        38404,
+        13
+      ],
+      "language": "tr"
+    },
+    "cl100k_base_en": {
+      "words": 69,
+      "characters": 347,
+      "bytes": 347,
+      "tokens": 75,
+      "tokens_per_word": 1.0869565217391304,
+      "ids": [
+        2028,
+        6693,
+        358,
+        3782,
+        505,
+        71344,
+        311,
+        54468,
+        555,
+        5542,
+        13,
+        358,
+        2322,
+        856,
+        4885,
+        520,
+        279,
+        8216,
+        26,
+        3871,
+        584,
+        15203,
+        3235,
+        279,
+        31284,
+        323,
+        54244,
+        15600,
+        304,
+        264,
+        2678,
+        42030,
+        13,
+        1226,
+        15243,
+        922,
+        279,
+        2363,
+        358,
+        1047,
+        1373,
+        2391,
+        279,
+        11879,
+        323,
+        279,
+        990,
+        584,
+        1053,
+        656,
+        1828,
+        2046,
+        13,
+        3277,
+        358,
+        6052,
+        2162,
+        304,
+        279,
+        11714,
+        11,
+        358,
+        17057,
+        856,
+        8554,
+        323,
+        6222,
+        1148,
+        358,
+        1047,
+        9687,
+        449,
+        856,
+        3070,
+        13
+      ],
+      "language": "en"
+    },
+    "custom_basic_tr": {
+      "words": 36,
+      "characters": 297,
+      "bytes": 332,
+      "tokens": 169,
+      "tokens_per_word": 4.694444444444445,
+      "ids": [
+        66,
+        288,
+        115,
+        339,
+        312,
+        32,
+        65,
+        110,
+        371,
+        97,
+        39,
+        373,
+        449,
+        366,
+        263,
+        98,
+        351,
+        39,
+        264,
+        116,
+        114,
+        273,
+        412,
+        415,
+        484,
+        298,
+        449,
+        366,
+        301,
+        121,
+        328,
+        310,
+        261,
+        396,
+        306,
+        296,
+        315,
+        108,
+        392,
+        351,
+        374,
+        116,
+        330,
+        59,
+        32,
+        277,
+        108,
+        340,
+        116,
+        260,
+        115,
+        312,
+        287,
+        308,
+        121,
+        346,
+        493,
+        258,
+        112,
+        307,
+        258,
+        268,
+        258,
+        292,
+        286,
+        107,
+        385,
+        101,
+        308,
+        268,
+        284,
+        32,
+        343,
+        116,
+        340,
+        298,
+        89,
+        304,
+        99,
+        351,
+        117,
+        292,
+        98,
+        476,
+        313,
+        99,
+        264,
+        362,
+        117,
+        357,
+        297,
+        330,
+        307,
+        361,
+        339,
+        275,
+        329,
+        415,
+        368,
+        423,
+        104,
+        385,
+        116,
+        264,
+        121,
+        332,
+        355,
+        377,
+        315,
+        321,
+        32,
+        268,
+        272,
+        342,
+        109,
+        272,
+        261,
+        275,
+        107,
+        328,
+        374,
+        116,
+        467,
+        298,
+        65,
+        107,
+        259,
+        293,
+        32,
+        101,
+        329,
+        100,
+        420,
+        335,
+        297,
+        381,
+        308,
+        110,
+        488,
+        296,
+        315,
+        275,
+        335,
+        122,
+        273,
+        108,
+        367,
+        395,
+        329,
+        274,
+        297,
+        114,
+        273,
+        314,
+        107,
+        279,
+        283,
+        265,
+        97,
+        287,
+        337,
+        412,
+        112,
+        284,
+        108,
+        306,
+        116,
+        315,
+        46
+      ],
+      "language": "tr"
+    },
+    "custom_regex_tr": {
+      "words": 36,
+      "characters": 297,
+      "bytes": 332,
+      "tokens": 167,
+      "tokens_per_word": 4.638888888888889,
+      "ids": [
+        66,
+        117,
+        276,
+        339,
+        315,
+        366,
+        110,
+        107,
+        261,
+        97,
+        501,
+        258,
+        32,
+        454,
+        331,
+        258,
+        98,
+        378,
+        39,
+        97,
+        299,
+        114,
+        265,
+        326,
+        402,
+        280,
+        109,
+        46,
+        32,
+        454,
+        331,
+        306,
+        121,
+        328,
+        285,
+        433,
+        107,
+        97,
+        285,
+        259,
+        297,
+        327,
+        323,
+        354,
+        108,
+        377,
+        116,
+        324,
+        59,
+        283,
+        108,
+        333,
+        440,
+        276,
+        315,
+        289,
+        286,
+        274,
+        336,
+        506,
+        257,
+        112,
+        266,
+        257,
+        269,
+        381,
+        283,
+        266,
+        403,
+        101,
+        286,
+        316,
+        282,
+        379,
+        116,
+        333,
+        46,
+        484,
+        342,
+        99,
+        378,
+        396,
+        260,
+        448,
+        291,
+        99,
+        97,
+        300,
+        107,
+        117,
+        337,
+        301,
+        324,
+        266,
+        387,
+        339,
+        256,
+        369,
+        402,
+        368,
+        295,
+        302,
+        403,
+        415,
+        274,
+        329,
+        380,
+        421,
+        327,
+        325,
+        316,
+        273,
+        344,
+        109,
+        499,
+        256,
+        266,
+        328,
+        377,
+        116,
+        396,
+        46,
+        366,
+        107,
+        259,
+        298,
+        32,
+        352,
+        101,
+        496,
+        110,
+        447,
+        301,
+        363,
+        286,
+        343,
+        111,
+        116,
+        297,
+        327,
+        256,
+        268,
+        349,
+        265,
+        326,
+        280,
+        109,
+        369,
+        355,
+        301,
+        114,
+        416,
+        107,
+        281,
+        284,
+        105,
+        335,
+        289,
+        309,
+        326,
+        351,
+        282,
+        108,
+        311,
+        116,
+        327,
+        46
+      ],
+      "language": "tr"
+    }
+  },
+  "suffix_examples": [
+    {
+      "text": "ev",
+      "ids": [
+        5230
+      ],
+      "pieces": [
+        {
+          "text": "ev",
+          "hex": "65 76"
+        }
+      ]
+    },
+    {
+      "text": "evler",
+      "ids": [
+        5230,
+        1565
+      ],
+      "pieces": [
+        {
+          "text": "ev",
+          "hex": "65 76"
+        },
+        {
+          "text": "ler",
+          "hex": "6c 65 72"
+        }
+      ]
+    },
+    {
+      "text": "evlerimiz",
+      "ids": [
+        5230,
+        1565,
+        318,
+        450
+      ],
+      "pieces": [
+        {
+          "text": "ev",
+          "hex": "65 76"
+        },
+        {
+          "text": "ler",
+          "hex": "6c 65 72"
+        },
+        {
+          "text": "im",
+          "hex": "69 6d"
+        },
+        {
+          "text": "iz",
+          "hex": "69 7a"
+        }
+      ]
+    },
+    {
+      "text": "evlerimizden",
+      "ids": [
+        5230,
+        1565,
+        318,
+        450,
+        5294
+      ],
+      "pieces": [
+        {
+          "text": "ev",
+          "hex": "65 76"
+        },
+        {
+          "text": "ler",
+          "hex": "6c 65 72"
+        },
+        {
+          "text": "im",
+          "hex": "69 6d"
+        },
+        {
+          "text": "iz",
+          "hex": "69 7a"
+        },
+        {
+          "text": "den",
+          "hex": "64 65 6e"
+        }
+      ]
+    }
+  ],
+  "gpt4_parity": {
+    "encoding": "cl100k_base",
+    "cases": 114,
+    "all_ids_equal": true,
+    "all_roundtrips_equal": true,
+    "special_tokens": "ordinary literal text",
+    "example": {
+      "text": "hello world!!!? (안녕하세요!) lol123 😉",
+      "ids": [
+        15339,
+        1917,
+        12340,
+        30,
+        320,
+        31495,
+        230,
+        75265,
+        243,
+        92245,
+        16715,
+        28509,
+        4513,
+        57037
+      ]
+    }
+  }
+}
