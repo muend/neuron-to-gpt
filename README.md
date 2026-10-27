@@ -10,7 +10,7 @@ previously implemented `backward()` mechanism scales from scalar values to
 tensors.
 
 Weeks 1–4 retain their original filenames for backward compatibility. New
-Week 5–9 files and commands use English naming consistently.
+Week 5–10 files and commands use English naming consistently.
 
 ## Setup
 
@@ -39,6 +39,7 @@ pip install -r week03/requirements.txt
 | [07](week07/) | Tiny Shakespeare, character batches, causal averages and single-head self-attention | ✅ |
 | [08](week08/) | Multi-head attention, Transformer blocks, character GPT, A100 training and a Gradio model lab | ✅ |
 | [09](week09/) | Byte-level BPE, Unicode/UTF-8, regex pretokenization and cl100k_base compatibility | ✅ |
+| [10](week10/) | GPT-2 124M, pretrained weight import, logits parity, sampling and a fixed-batch training diagnostic | ✅ |
 
 ## Run Week 1
 
@@ -153,6 +154,18 @@ See [week09/README.md](week09/README.md) for setup and
 compression, first merges, language comparison and exact `cl100k_base` token IDs.
 The experiment uses the private Week 8 corpus by default; `--corpus` accepts your
 own UTF-8 text. Tokenizer training and inference run on CPU without a model API.
+
+## Run Week 10
+
+Open [week10/colab_gpt2.ipynb](week10/colab_gpt2.ipynb) in Colab and run its
+numbered cells on T4 and A100. It embeds the verified project sources, checks
+Hugging Face logits in FP32, samples English/Turkish text and trains a fresh
+124M model for 300 updates on one batch. No private corpus or Drive mount is
+needed. Download each result ZIP before changing the runtime.
+
+See [week10/README.md](week10/README.md) for local checks and import commands,
+and [the Turkish submission report](week10/results/submission_report.md) for
+the measured results, position-embedding plots and the limits of these tests.
 
 ## Sources
 

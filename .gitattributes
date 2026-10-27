@@ -1,3 +1,13 @@
 # Preserve the imported export bytes across Windows/Linux checkouts.
 # The importer checks byte equality before an idempotent re-import.
 week08/results/gpu/** -text
+
+# Keep source-bundle and recorded-result hashes stable on Windows and Linux.
+week09/*.py -text whitespace=cr-at-eol
+week09/requirements.txt -text whitespace=cr-at-eol
+week09/results/** -text -whitespace
+week10/*.py -text whitespace=cr-at-eol
+week10/requirements.txt -text whitespace=cr-at-eol
+week10/colab_gpt2.ipynb -text whitespace=cr-at-eol
+# Preserve recorded samples and significant empty TSV columns byte-for-byte.
+week10/results/** -text -whitespace

@@ -1,0 +1,10 @@
+{
+  "gpu": "Tesla T4",
+  "source_bundle_sha256": "0b5cc3a9a3d5cdc1c727db1cc6c7e5f5bc9a1d31add90a0e3beca754e49ca75c",
+  "source_hashes": {
+    "model.py": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535",
+    "run_experiments.py": "57ca7e634a14c665712ead551d142646dd82fc19dc9667d09a5eaeea541c01ea",
+    "test_gpt2.py": "d81b5db67ca1e8f2920458f9cb1c5d50170b9896987d5c3c85c5c91bec60cdc0",
+    "requirements.txt": "68930bfe39dec13ca0cd507379425475407618bf4af86d9e2fbe496d838bd38a"
+  }
+}

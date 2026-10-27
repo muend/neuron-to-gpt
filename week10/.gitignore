@@ -1,0 +1,7 @@
+.venv/
+.cache/
+outputs/
+colab_bundle.zip
+*.pt
+*.safetensors
+*.log

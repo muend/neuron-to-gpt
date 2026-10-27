@@ -1,0 +1,6 @@
+torch>=2.3,<3
+transformers>=4.46,<5
+safetensors>=0.4.5
+tiktoken>=0.8,<1
+matplotlib>=3.8
+numpy>=1.26

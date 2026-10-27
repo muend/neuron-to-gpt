@@ -1,0 +1,1907 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "task": "pretrained",
+  "model": "openai-community/gpt2",
+  "requested_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+  "resolved_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+  "environment": {
+    "python": "3.12.10",
+    "packages": {
+      "torch": "2.14.0",
+      "transformers": "4.57.6",
+      "tiktoken": "0.14.0",
+      "safetensors": "0.8.0",
+      "matplotlib": "3.11.2"
+    },
+    "device": "cpu",
+    "hardware": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "cuda_runtime": null,
+    "cpu_threads": 4
+  },
+  "config": {
+    "block_size": 1024,
+    "vocab_size": 50257,
+    "n_layer": 12,
+    "n_head": 12,
+    "n_embd": 768,
+    "dropout": 0.0,
+    "weight_tying": true,
+    "attn_implementation": "eager"
+  },
+  "unique_parameters": 124439808,
+  "tied_embedding_parameters_saved": 38597376,
+  "weights": [
+    {
+      "name": "transformer.wte.weight",
+      "shape": [
+        50257,
+        768
+      ],
+      "parameters": 38597376,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.wpe.weight",
+      "shape": [
+        1024,
+        768
+      ],
+      "parameters": 786432,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.0.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.1.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.2.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.3.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.4.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.5.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.6.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.7.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.8.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.9.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.10.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.ln_1.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.ln_1.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.attn.c_attn.weight",
+      "shape": [
+        768,
+        2304
+      ],
+      "parameters": 1769472,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.attn.c_attn.bias",
+      "shape": [
+        2304
+      ],
+      "parameters": 2304,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.attn.c_proj.weight",
+      "shape": [
+        768,
+        768
+      ],
+      "parameters": 589824,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.attn.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.ln_2.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.ln_2.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.mlp.c_fc.weight",
+      "shape": [
+        768,
+        3072
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.mlp.c_fc.bias",
+      "shape": [
+        3072
+      ],
+      "parameters": 3072,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.mlp.c_proj.weight",
+      "shape": [
+        3072,
+        768
+      ],
+      "parameters": 2359296,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.h.11.mlp.c_proj.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.ln_f.weight",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "transformer.ln_f.bias",
+      "shape": [
+        768
+      ],
+      "parameters": 768,
+      "shared_with": null
+    },
+    {
+      "name": "lm_head.weight",
+      "shape": [
+        50257,
+        768
+      ],
+      "parameters": 38597376,
+      "shared_with": "transformer.wte.weight"
+    }
+  ],
+  "position_embeddings": {
+    "shape": [
+      1024,
+      768
+    ],
+    "minimum": -4.538113594055176,
+    "maximum": 4.065310955047607,
+    "mean": -0.0006787168676964939,
+    "std": 0.12269125133752823,
+    "plotted_channels": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "load_info": {
+    "copied_tensors": 149,
+    "transposed_tensors": [
+      "transformer.h.0.attn.c_attn.weight",
+      "transformer.h.0.attn.c_proj.weight",
+      "transformer.h.0.mlp.c_fc.weight",
+      "transformer.h.0.mlp.c_proj.weight",
+      "transformer.h.1.attn.c_attn.weight",
+      "transformer.h.1.attn.c_proj.weight",
+      "transformer.h.1.mlp.c_fc.weight",
+      "transformer.h.1.mlp.c_proj.weight",
+      "transformer.h.2.attn.c_attn.weight",
+      "transformer.h.2.attn.c_proj.weight",
+      "transformer.h.2.mlp.c_fc.weight",
+      "transformer.h.2.mlp.c_proj.weight",
+      "transformer.h.3.attn.c_attn.weight",
+      "transformer.h.3.attn.c_proj.weight",
+      "transformer.h.3.mlp.c_fc.weight",
+      "transformer.h.3.mlp.c_proj.weight",
+      "transformer.h.4.attn.c_attn.weight",
+      "transformer.h.4.attn.c_proj.weight",
+      "transformer.h.4.mlp.c_fc.weight",
+      "transformer.h.4.mlp.c_proj.weight",
+      "transformer.h.5.attn.c_attn.weight",
+      "transformer.h.5.attn.c_proj.weight",
+      "transformer.h.5.mlp.c_fc.weight",
+      "transformer.h.5.mlp.c_proj.weight",
+      "transformer.h.6.attn.c_attn.weight",
+      "transformer.h.6.attn.c_proj.weight",
+      "transformer.h.6.mlp.c_fc.weight",
+      "transformer.h.6.mlp.c_proj.weight",
+      "transformer.h.7.attn.c_attn.weight",
+      "transformer.h.7.attn.c_proj.weight",
+      "transformer.h.7.mlp.c_fc.weight",
+      "transformer.h.7.mlp.c_proj.weight",
+      "transformer.h.8.attn.c_attn.weight",
+      "transformer.h.8.attn.c_proj.weight",
+      "transformer.h.8.mlp.c_fc.weight",
+      "transformer.h.8.mlp.c_proj.weight",
+      "transformer.h.9.attn.c_attn.weight",
+      "transformer.h.9.attn.c_proj.weight",
+      "transformer.h.9.mlp.c_fc.weight",
+      "transformer.h.9.mlp.c_proj.weight",
+      "transformer.h.10.attn.c_attn.weight",
+      "transformer.h.10.attn.c_proj.weight",
+      "transformer.h.10.mlp.c_fc.weight",
+      "transformer.h.10.mlp.c_proj.weight",
+      "transformer.h.11.attn.c_attn.weight",
+      "transformer.h.11.attn.c_proj.weight",
+      "transformer.h.11.mlp.c_fc.weight",
+      "transformer.h.11.mlp.c_proj.weight"
+    ],
+    "unique_parameters": 124439808
+  },
+  "logit_parity": {
+    "precision": "fp32",
+    "attention": "eager",
+    "tf32": false,
+    "rtol": 0.0001,
+    "atol": 0.0001,
+    "all_passed": true,
+    "cases": [
+      {
+        "text": "Hello, I am a language model and",
+        "input_ids": [
+          15496,
+          11,
+          314,
+          716,
+          257,
+          3303,
+          2746,
+          290
+        ],
+        "shape": [
+          1,
+          8,
+          50257
+        ],
+        "max_abs_difference": 6.103515625e-05,
+        "mean_abs_difference": 1.7099950127885677e-05,
+        "allclose": true,
+        "argmax_equal": true
+      },
+      {
+        "text": "Merhaba, ben bir dil modeliyim ve",
+        "input_ids": [
+          13102,
+          5976,
+          64,
+          11,
+          1888,
+          35122,
+          11844,
+          2746,
+          7745,
+          320,
+          1569
+        ],
+        "shape": [
+          1,
+          11,
+          50257
+        ],
+        "max_abs_difference": 5.340576171875e-05,
+        "mean_abs_difference": 1.497726498200791e-05,
+        "allclose": true,
+        "argmax_equal": true
+      },
+      {
+        "text": "A quick check: 123, çığ and 🙂.",
+        "input_ids": [
+          32,
+          2068,
+          2198,
+          25,
+          17031,
+          11,
+          6184,
+          100,
+          30102,
+          33133,
+          290,
+          32485,
+          13
+        ],
+        "shape": [
+          1,
+          13,
+          50257
+        ],
+        "max_abs_difference": 0.0001220703125,
+        "mean_abs_difference": 1.7259822925552726e-05,
+        "allclose": true,
+        "argmax_equal": true
+      }
+    ]
+  },
+  "samples": [
+    {
+      "language": "en",
+      "prompt": "Hello, I am a language model and",
+      "prompt_ids": [
+        15496,
+        11,
+        314,
+        716,
+        257,
+        3303,
+        2746,
+        290
+      ],
+      "prompt_tokens": 8,
+      "seed": 1337,
+      "top_k": 50,
+      "temperature": 0.8,
+      "new_tokens": 64,
+      "generated_ids": [
+        15496,
+        11,
+        314,
+        716,
+        257,
+        3303,
+        2746,
+        290,
+        1486,
+        3710,
+        290,
+        314,
+        1101,
+        994,
+        284,
+        1037,
+        345,
+        2193,
+        284,
+        1486,
+        290,
+        1486,
+        262,
+        749,
+        6942,
+        835,
+        284,
+        1486,
+        393,
+        1382,
+        257,
+        3052,
+        11,
+        329,
+        257,
+        6838,
+        13,
+        314,
+        1101,
+        257,
+        6868,
+        3594,
+        10834,
+        290,
+        314,
+        588,
+        284,
+        2251,
+        616,
+        898,
+        3303,
+        2746,
+        290,
+        1486,
+        10902,
+        13,
+        50256,
+        40,
+        423,
+        1464,
+        587,
+        30103,
+        416,
+        262,
+        2126,
+        286,
+        852,
+        262,
+        717,
+        1048,
+        284,
+        307
+      ],
+      "continuation": " design student and I'm here to help you learn to design and design the most efficient way to design or build a website, for a fee. I'm a native English speaker and I like to create my own language model and design courses.<|endoftext|>I have always been fascinated by the idea of being the first person to be",
+      "full_text": "Hello, I am a language model and design student and I'm here to help you learn to design and design the most efficient way to design or build a website, for a fee. I'm a native English speaker and I like to create my own language model and design courses.<|endoftext|>I have always been fascinated by the idea of being the first person to be",
+      "seconds": 5.878248100052588
+    },
+    {
+      "language": "tr",
+      "prompt": "Merhaba, ben bir dil modeliyim ve",
+      "prompt_ids": [
+        13102,
+        5976,
+        64,
+        11,
+        1888,
+        35122,
+        11844,
+        2746,
+        7745,
+        320,
+        1569
+      ],
+      "prompt_tokens": 11,
+      "seed": 1338,
+      "top_k": 50,
+      "temperature": 0.8,
+      "new_tokens": 64,
+      "generated_ids": [
+        13102,
+        5976,
+        64,
+        11,
+        1888,
+        35122,
+        11844,
+        2746,
+        7745,
+        320,
+        1569,
+        4106,
+        5948,
+        435,
+        480,
+        71,
+        334,
+        6814,
+        6,
+        357,
+        464,
+        1751,
+        286,
+        511,
+        17150,
+        389,
+        407,
+        286,
+        262,
+        14893,
+        286,
+        2692,
+        1776,
+        198,
+        198,
+        464,
+        8990,
+        286,
+        2692,
+        25,
+        440,
+        5770,
+        338,
+        4453,
+        11,
+        440,
+        5822,
+        286,
+        9538,
+        11,
+        198,
+        198,
+        1870,
+        339,
+        508,
+        318,
+        407,
+        286,
+        262,
+        14893,
+        286,
+        2692,
+        11,
+        2236,
+        307,
+        2005,
+        572,
+        422,
+        262,
+        13239,
+        286,
+        1793,
+        13,
+        198,
+        198
+      ],
+      "continuation": "kiye alameh uda' (The children of their fathers are not of the tribe of Israel);\n\nThe Children of Israel: O god's Lord, O king of heaven,\n\nAnd he who is not of the tribe of Israel, shall be cut off from the kingdom of God.\n\n",
+      "full_text": "Merhaba, ben bir dil modeliyim vekiye alameh uda' (The children of their fathers are not of the tribe of Israel);\n\nThe Children of Israel: O god's Lord, O king of heaven,\n\nAnd he who is not of the tribe of Israel, shall be cut off from the kingdom of God.\n\n",
+      "seconds": 6.157049599918537
+    }
+  ],
+  "tokenizer_comparison": [
+    {
+      "language": "en",
+      "text": "Hello, I am a language model and",
+      "words": 7,
+      "gpt2_tokens": 8,
+      "gpt2_ids": [
+        15496,
+        11,
+        314,
+        716,
+        257,
+        3303,
+        2746,
+        290
+      ],
+      "gpt2_bytes": [
+        "48 65 6c 6c 6f",
+        "2c",
+        "20 49",
+        "20 61 6d",
+        "20 61",
+        "20 6c 61 6e 67 75 61 67 65",
+        "20 6d 6f 64 65 6c",
+        "20 61 6e 64"
+      ],
+      "cl100k_tokens": 8,
+      "cl100k_ids": [
+        9906,
+        11,
+        358,
+        1097,
+        264,
+        4221,
+        1646,
+        323
+      ]
+    },
+    {
+      "language": "tr",
+      "text": "Merhaba, ben bir dil modeliyim ve",
+      "words": 6,
+      "gpt2_tokens": 11,
+      "gpt2_ids": [
+        13102,
+        5976,
+        64,
+        11,
+        1888,
+        35122,
+        11844,
+        2746,
+        7745,
+        320,
+        1569
+      ],
+      "gpt2_bytes": [
+        "4d 65 72",
+        "68 61 62",
+        "61",
+        "2c",
+        "20 62 65 6e",
+        "20 62 69 72",
+        "20 64 69 6c",
+        "20 6d 6f 64 65 6c",
+        "69 79",
+        "69 6d",
+        "20 76 65"
+      ],
+      "cl100k_tokens": 11,
+      "cl100k_ids": [
+        27814,
+        10796,
+        64,
+        11,
+        3399,
+        15606,
+        19371,
+        1646,
+        16618,
+        318,
+        5320
+      ]
+    }
+  ],
+  "translated_sentence_losses": [
+    {
+      "en": {
+        "text": "The children are reading a book in the garden.",
+        "tokens": 10,
+        "words": 9,
+        "bytes": 46,
+        "ids": [
+          464,
+          1751,
+          389,
+          3555,
+          257,
+          1492,
+          287,
+          262,
+          11376,
+          13
+        ],
+        "total_nll_nats": 36.12666320800781,
+        "nats_per_token": 3.6126663208007814,
+        "bits_per_byte": 1.1330382142186661,
+        "context": "initial endoftext ID 50256; every text token scored"
+      },
+      "tr": {
+        "text": "Çocuklar bahçede bir kitap okuyor.",
+        "tokens": 16,
+        "words": 5,
+        "bytes": 36,
+        "ids": [
+          127,
+          229,
+          420,
+          2724,
+          21681,
+          275,
+          993,
+          16175,
+          18654,
+          35122,
+          6220,
+          499,
+          12876,
+          4669,
+          273,
+          13
+        ],
+        "total_nll_nats": 112.63832092285156,
+        "nats_per_token": 7.039895057678223,
+        "bits_per_byte": 4.513965194707153,
+        "context": "initial endoftext ID 50256; every text token scored"
+      }
+    },
+    {
+      "en": {
+        "text": "I will meet my friends at the station tomorrow morning.",
+        "tokens": 11,
+        "words": 10,
+        "bytes": 55,
+        "ids": [
+          40,
+          481,
+          1826,
+          616,
+          2460,
+          379,
+          262,
+          4429,
+          9439,
+          3329,
+          13
+        ],
+        "total_nll_nats": 42.06379318237305,
+        "nats_per_token": 3.82398119839755,
+        "bits_per_byte": 1.103367742276156,
+        "context": "initial endoftext ID 50256; every text token scored"
+      },
+      "tr": {
+        "text": "Yarın sabah istasyonda arkadaşlarımla buluşacağım.",
+        "tokens": 27,
+        "words": 5,
+        "bytes": 56,
+        "ids": [
+          56,
+          283,
+          30102,
+          77,
+          17463,
+          993,
+          318,
+          83,
+          292,
+          3243,
+          64,
+          610,
+          74,
+          4763,
+          46481,
+          21681,
+          30102,
+          4029,
+          64,
+          4807,
+          84,
+          46481,
+          22260,
+          33133,
+          30102,
+          76,
+          13
+        ],
+        "total_nll_nats": 146.3155975341797,
+        "nats_per_token": 5.419096204969618,
+        "bits_per_byte": 3.7694426244154733,
+        "context": "initial endoftext ID 50256; every text token scored"
+      }
+    },
+    {
+      "en": {
+        "text": "We talked about the things we learned during our journey.",
+        "tokens": 11,
+        "words": 10,
+        "bytes": 57,
+        "ids": [
+          1135,
+          6619,
+          546,
+          262,
+          1243,
+          356,
+          4499,
+          1141,
+          674,
+          7002,
+          13
+        ],
+        "total_nll_nats": 35.74442672729492,
+        "nats_per_token": 3.2494933388449927,
+        "bits_per_byte": 0.904707143489251,
+        "context": "initial endoftext ID 50256; every text token scored"
+      },
+      "tr": {
+        "text": "Yolculuğumuz sırasında öğrendiklerimiz hakkında konuştuk.",
+        "tokens": 31,
+        "words": 5,
+        "bytes": 64,
+        "ids": [
+          56,
+          349,
+          3129,
+          84,
+          33133,
+          388,
+          10277,
+          264,
+          30102,
+          8847,
+          30102,
+          45658,
+          6184,
+          114,
+          33133,
+          10920,
+          1134,
+          1754,
+          320,
+          528,
+          387,
+          28747,
+          30102,
+          45658,
+          479,
+          261,
+          84,
+          46481,
+          83,
+          2724,
+          13
+        ],
+        "total_nll_nats": 176.44163513183594,
+        "nats_per_token": 5.6916656494140625,
+        "bits_per_byte": 3.977366750172494,
+        "context": "initial endoftext ID 50256; every text token scored"
+      }
+    }
+  ],
+  "elapsed_seconds": 23.429033800028265
+}
