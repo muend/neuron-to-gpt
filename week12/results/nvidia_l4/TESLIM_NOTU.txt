@@ -1,0 +1,32 @@
+Hafta 12 teslimi — gerçek veride GPT-2 ve HellaSwag
+
+124.475.904 parametreli kendi GPT-2 modelimi NVIDIA L4
+üzerinde rastgele ağırlıklardan eğittim. GPT-2 tokenizer'ıyla hazırlanan veri:
+20,000,000 train token'ı,
+131,072 validation token'ı.
+Belgeler train/val arasında ayrıldı; birebir aynı metin tekrarları çıkarıldı.
+
+Başarılı güncelleme: 19,586
+İşlenen token (tekrarlar dahil): 80,224,256
+Duvar süresi: 60.20 dakika
+Update süresine göre hız: 26,215.9 token/s
+Toplam duvar süresine göre hız: 22,208.7 token/s
+Son train loss: 4.742307 nats/token
+İlk/son validation loss: 11.013391 -> 4.984965
+Her validation kontrolünde aynı 32,768 token ölçüldü.
+
+Aynı ilk 1.000 HellaSwag validation örneğinde, ending-only ortalama token NLL:
+Kendi modelim: 276/1000 = %27.60
+OpenAI GPT-2: 336/1000 = %33.60
+OpenAI eksi kendi modelim: +6.00 yüzde puan.
+
+Kısa eğitimin veri miktarı, süresi ve metin dağılımı OpenAI ön eğitiminden
+farklıdır. Tek bir deneyle farkın nedenlerini birbirinden ayıramam.
+Örneklerde kelime ve cümle yapısı oluşsa da tekrarlar ve anlam kopuklukları
+devam ediyor. Eğitim başı/ortası/sonu aynı prompt örnekleri rapordadır.
+Ek Türkçe eğitim yapılmadı.
+
+Teslim ZIP'i: kaynak kod, ham metrikler, grafikler, örnekler ve açıklama raporu.
+Token shard'ları ayrı veri ZIP'inde, eğitilmiş checkpoint ayrı last.pt dosyasında.
+FineWeb-Edu kaynağı: https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu
+HellaSwag kaynağı: https://huggingface.co/datasets/Rowan/hellaswag

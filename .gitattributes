@@ -11,3 +11,14 @@ week10/requirements.txt -text whitespace=cr-at-eol
 week10/colab_gpt2.ipynb -text whitespace=cr-at-eol
 # Preserve recorded samples and significant empty TSV columns byte-for-byte.
 week10/results/** -text -whitespace
+
+# Keep Week 11/12 embedded-source and returned-evidence hashes reproducible.
+week11/*.py -text whitespace=cr-at-eol
+week11/requirements.txt -text whitespace=cr-at-eol
+week11/colab_training.ipynb -text whitespace=cr-at-eol
+week11/data/demo.txt -text whitespace=cr-at-eol
+week11/results/** -text -whitespace
+week12/*.py -text whitespace=cr-at-eol
+week12/requirements.txt -text whitespace=cr-at-eol
+week12/colab_training.ipynb -text whitespace=cr-at-eol
+week12/results/** -text -whitespace

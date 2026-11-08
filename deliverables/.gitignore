@@ -1,0 +1,7 @@
+# Submission is via GitHub links; result ZIPs remain local export backups.
+*.zip
+checksums.json
+README.week11.index.md
+README.week11.index.patch
+hafta11_teslim_notu.txt
+hafta12_teslim_notu.txt

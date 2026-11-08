@@ -1,0 +1,5 @@
+.cache/
+outputs/
+*.zip
+*.pt
+*.pth

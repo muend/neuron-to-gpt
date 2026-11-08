@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "archive_sha256": "22f662259f6f4ddd7eab6e44e89d54f1f73da99001981e9417bf045195743759",
+  "local_source_matches": {
+    "week10/model.py": true,
+    "week11/training.py": true,
+    "week12/common.py": true,
+    "week12/data.py": true,
+    "week12/evaluate.py": true,
+    "week12/make_colab_notebook.py": false,
+    "week12/prepare_data.py": true,
+    "week12/report.py": true,
+    "week12/test_pipeline.py": true,
+    "week12/train.py": true,
+    "week12/requirements.txt": true
+  },
+  "successful_updates": 19586,
+  "tokens_seen": 80224256,
+  "own_correct_norm": 276,
+  "openai_correct_norm": 336,
+  "gap_percentage_points": 6.0,
+  "scope": "ZIP integrity, exact archived sources, core local sources, manifest/accounting, finite metrics, prediction argmins/counts, matching examples/settings/checkpoint digest. No GPU rerun; checkpoint weights and token shard bytes are held separately in Drive."
+}

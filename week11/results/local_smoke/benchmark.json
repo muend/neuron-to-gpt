@@ -1,0 +1,157 @@
+{
+  "environment": {
+    "device": "cpu",
+    "hardware": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "torch": "2.14.0+cpu",
+    "python": "3.12.10",
+    "cuda": null,
+    "cpu_threads": 4,
+    "capability": null
+  },
+  "corpus": {
+    "filename": "demo.txt",
+    "sha256": "06d8f14166ad929c8be6a9179cf4dda3b73a8981562f4e25d6cc854597ad8b79",
+    "utf8_bytes": 2696,
+    "tokens_including_boundary": 2697,
+    "tokenizer": "UTF-8 bytes + boundary ID 256 (smoke only)",
+    "stream_policy": "cyclic, EOT-separated, no dropped tail"
+  },
+  "source_sha256": {
+    "week11/training.py": "4f2726530f52a6b2a4ba42afde9d5a2b1848445aa94c315f2c7d3aba2051fe05",
+    "week11/run_experiments.py": "6510737725b9effd2bfdf98c05e02e5e728725061ceef6158a55e0bf131f1b74",
+    "week11/requirements.txt": "ecd070dc12616b0a12ab23ebc74c6dde9e7a93091bcfef061aff27032249e2be",
+    "week10/model.py": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535"
+  },
+  "smoke_only": true,
+  "run_configuration": {
+    "batch_size": 2,
+    "sequence_length": 16,
+    "accumulation_steps": 2,
+    "steps": 12,
+    "lr_warmup": 2,
+    "warmup": 2,
+    "benchmark_steps": 5,
+    "compile": false
+  },
+  "benchmark_shape": [
+    2,
+    16
+  ],
+  "warmup_steps": 2,
+  "measured_steps": 5,
+  "timing_scope": "load/transfer + forward + backward + unscale/clip + AdamW; synchronized each step; excludes logging/setup/warmup",
+  "stages": [
+    {
+      "status": "measured",
+      "settings": {
+        "tf32": false,
+        "precision": "fp32",
+        "compile": false,
+        "attention": "eager",
+        "force_flash": false,
+        "padded": false
+      },
+      "median_ms": 5.259800003841519,
+      "tokens_per_second": 6083.881511964077,
+      "step_seconds": [
+        0.005259800003841519,
+        0.005252200178802013,
+        0.004837400047108531,
+        0.0072119999676942825,
+        0.0053250000346452
+      ],
+      "losses": [
+        5.271346092224121,
+        5.232085227966309,
+        5.175126075744629,
+        5.017612457275391,
+        5.026254653930664
+      ],
+      "measured_skipped_updates": 0,
+      "warmup_seconds": 0.19400419993326068,
+      "peak_allocated_bytes": null,
+      "optimizer": {
+        "decay_tensors": 10,
+        "decay_parameters": 116800,
+        "no_decay_tensors": 18,
+        "no_decay_parameters": 1792,
+        "betas": [
+          0.9,
+          0.95
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.1,
+        "fused": false
+      },
+      "speedup_vs_baseline": 1.0,
+      "speedup_vs_previous": 1.0,
+      "stage": "baseline"
+    },
+    {
+      "status": "skipped",
+      "reason": "TF32 requires an Ampere-or-newer CUDA device (T4 is sm75)",
+      "stage": "tf32"
+    },
+    {
+      "status": "skipped",
+      "reason": "This controlled AMP benchmark is CUDA-only; MPS uses FP32",
+      "stage": "mixed_precision"
+    },
+    {
+      "status": "skipped",
+      "reason": "CUDA Inductor comparison runs on Linux/Colab; skipped on this platform",
+      "stage": "compile"
+    },
+    {
+      "status": "skipped",
+      "reason": "Forced CUDA FlashAttention needs a supported GPU and FP16/BF16",
+      "stage": "flash_attention"
+    },
+    {
+      "status": "measured",
+      "settings": {
+        "tf32": false,
+        "precision": "fp32",
+        "compile": false,
+        "attention": "eager",
+        "force_flash": false,
+        "padded": true
+      },
+      "median_ms": 9.594800183549523,
+      "tokens_per_second": 3335.1398036266182,
+      "step_seconds": [
+        0.009579999838024378,
+        0.009743199916556478,
+        0.008352400036528707,
+        0.01159060001373291,
+        0.009594800183549523
+      ],
+      "losses": [
+        5.6628522872924805,
+        5.619699001312256,
+        5.560147762298584,
+        5.4037322998046875,
+        5.409218788146973
+      ],
+      "measured_skipped_updates": 0,
+      "warmup_seconds": 0.024149100063368678,
+      "peak_allocated_bytes": null,
+      "optimizer": {
+        "decay_tensors": 10,
+        "decay_parameters": 124928,
+        "no_decay_tensors": 18,
+        "no_decay_parameters": 1792,
+        "betas": [
+          0.9,
+          0.95
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.1,
+        "fused": false
+      },
+      "speedup_vs_baseline": 0.5481927609977278,
+      "speedup_vs_previous": 0.5481927609977278,
+      "stage": "padded_vocab"
+    }
+  ]
+}

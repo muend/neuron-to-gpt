@@ -1,0 +1,262 @@
+{
+  "status": "complete",
+  "smoke_only": true,
+  "environment": {
+    "device": "cpu",
+    "hardware": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "torch": "2.14.0+cpu",
+    "python": "3.12.10",
+    "cuda": null,
+    "cpu_threads": 2
+  },
+  "provenance": {
+    "source_sha256": {
+      "week10/model.py": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535",
+      "week11/training.py": "4f2726530f52a6b2a4ba42afde9d5a2b1848445aa94c315f2c7d3aba2051fe05",
+      "week12/common.py": "eef5d129baa5ee535e3f73712fef517178883def84119a6b3f8667949cd465db",
+      "week12/data.py": "1cea648faf5728b394b1928db9da29a2f11645f180d46c82468c7400fd288354",
+      "week12/evaluate.py": "5ccd1e957f189f6ba3d783825e42d3cb21d53f315ea40e8a8fcd140f7d0f5867",
+      "week12/make_colab_notebook.py": "9974626f7253809dfe4c07a8139b84963f8703c17d54cdfcf68976330dcca393",
+      "week12/prepare_data.py": "23aff9e61c8ebace9f756a6f076d0f59460348963781f560881a7776cb0e4094",
+      "week12/report.py": "5533dbc4e0e2ec1bce3657dc7cc647556d14bc9bf1c2992dfe46c30445d2fc7c",
+      "week12/test_pipeline.py": "ac5e975febb3379eed61e35a958116b9d4c3bfacb851d85992a367e273364f13",
+      "week12/train.py": "53b60b9c59560ed897c57e06534f8baa495497587e93fbb004ba0b1adbfb1dc2",
+      "week12/requirements.txt": "fbaa3a25f33137be3bf04bf3bff20eb9555bc54fe0d9bdf5f038fdb0ba664096"
+    },
+    "data_manifest_sha256": "2a170d80cdd0e2bd25c9595c6db3258acfdb807e412812a45150f6277aee3733"
+  },
+  "settings": {
+    "batch_size": 1,
+    "sequence_length": 16,
+    "accumulation_steps": 2,
+    "precision": "fp32",
+    "compile": false,
+    "warmup_steps": 2,
+    "val_batches": 2,
+    "sample_tokens": 8
+  },
+  "model_config": {
+    "block_size": 128,
+    "vocab_size": 50304,
+    "n_layer": 2,
+    "n_head": 2,
+    "n_embd": 32,
+    "dropout": 0.0,
+    "weight_tying": true,
+    "attn_implementation": "sdpa"
+  },
+  "parameters": 1639296,
+  "optimizer": {
+    "decay_tensors": 10,
+    "decay_parameters": 1638400,
+    "no_decay_tensors": 18,
+    "no_decay_parameters": 896,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "fused": false
+  },
+  "successful_updates": 9,
+  "attempted_updates": 9,
+  "skipped_updates": 0,
+  "tokens_seen": 288,
+  "elapsed_wall_seconds": 0.9967006999067962,
+  "optimizer_seconds": 0.4544008995871991,
+  "warmup_finished_seconds": 0.5646249998826534,
+  "history": [
+    {
+      "loss": 10.842597961425781,
+      "gradient_norm_before_clip": 2.2390806674957275,
+      "skipped_update": false,
+      "finite": true,
+      "step": 1,
+      "attempt": 1,
+      "learning_rate": 0.0003,
+      "milliseconds": 188.78019996918738,
+      "tokens_per_second": 169.50930238035042,
+      "tokens_seen": 32,
+      "elapsed_seconds": 0.5277742999605834
+    },
+    {
+      "loss": 10.842981338500977,
+      "gradient_norm_before_clip": 2.3313965797424316,
+      "skipped_update": false,
+      "finite": true,
+      "step": 2,
+      "attempt": 2,
+      "learning_rate": 0.0006,
+      "milliseconds": 34.8855999764055,
+      "tokens_per_second": 917.2839229264468,
+      "tokens_seen": 64,
+      "elapsed_seconds": 0.5646279999054968
+    },
+    {
+      "loss": 10.86042594909668,
+      "gradient_norm_before_clip": 2.4685349464416504,
+      "skipped_update": false,
+      "finite": true,
+      "step": 3,
+      "attempt": 3,
+      "learning_rate": 0.0005999999989796018,
+      "milliseconds": 33.27089990489185,
+      "tokens_per_second": 961.8014568729778,
+      "tokens_seen": 96,
+      "elapsed_seconds": 0.5995673998259008
+    },
+    {
+      "loss": 10.8001708984375,
+      "gradient_norm_before_clip": 2.2234599590301514,
+      "skipped_update": false,
+      "finite": true,
+      "step": 4,
+      "attempt": 4,
+      "learning_rate": 0.000599996405047969,
+      "milliseconds": 36.14480001851916,
+      "tokens_per_second": 885.3279028685861,
+      "tokens_seen": 128,
+      "elapsed_seconds": 0.6984304999932647
+    },
+    {
+      "loss": 10.851205825805664,
+      "gradient_norm_before_clip": 2.2128548622131348,
+      "skipped_update": false,
+      "finite": true,
+      "step": 5,
+      "attempt": 5,
+      "learning_rate": 0.0005999930194923856,
+      "milliseconds": 29.409899841994047,
+      "tokens_per_second": 1088.068989419256,
+      "tokens_seen": 160,
+      "elapsed_seconds": 0.7301220998633653
+    },
+    {
+      "loss": 10.797694206237793,
+      "gradient_norm_before_clip": 2.1538355350494385,
+      "skipped_update": false,
+      "finite": true,
+      "step": 6,
+      "attempt": 6,
+      "learning_rate": 0.0005999893693382156,
+      "milliseconds": 32.43230003863573,
+      "tokens_per_second": 986.6706943966126,
+      "tokens_seen": 192,
+      "elapsed_seconds": 0.7650024998001754
+    },
+    {
+      "loss": 10.777320861816406,
+      "gradient_norm_before_clip": 2.3554484844207764,
+      "skipped_update": false,
+      "finite": true,
+      "step": 7,
+      "attempt": 7,
+      "learning_rate": 0.0005999756061758998,
+      "milliseconds": 35.04909994080663,
+      "tokens_per_second": 913.0049003838569,
+      "tokens_seen": 224,
+      "elapsed_seconds": 0.8540524998679757
+    },
+    {
+      "loss": 10.780502319335938,
+      "gradient_norm_before_clip": 1.9775035381317139,
+      "skipped_update": false,
+      "finite": true,
+      "step": 8,
+      "attempt": 8,
+      "learning_rate": 0.0005999680001748636,
+      "milliseconds": 36.800900008529425,
+      "tokens_per_second": 869.5439511692184,
+      "tokens_seen": 256,
+      "elapsed_seconds": 0.892744799843058
+    },
+    {
+      "loss": 10.612459182739258,
+      "gradient_norm_before_clip": 1.6684030294418335,
+      "skipped_update": false,
+      "finite": true,
+      "step": 9,
+      "attempt": 9,
+      "learning_rate": 0.0005999586806724139,
+      "milliseconds": 27.62719988822937,
+      "tokens_per_second": 1158.2788023926257,
+      "tokens_seen": 288,
+      "elapsed_seconds": 0.9232942999806255
+    }
+  ],
+  "validation": [
+    {
+      "loss": 10.809400081634521,
+      "batches": 2,
+      "tokens": 32,
+      "available_tokens": 128,
+      "step": 0,
+      "elapsed_seconds": 0.25396649981848896
+    },
+    {
+      "loss": 10.795484066009521,
+      "batches": 2,
+      "tokens": 32,
+      "available_tokens": 128,
+      "step": 3,
+      "elapsed_seconds": 0.6080831999424845
+    },
+    {
+      "loss": 10.77179479598999,
+      "batches": 2,
+      "tokens": 32,
+      "available_tokens": 128,
+      "step": 6,
+      "elapsed_seconds": 0.776357299881056
+    },
+    {
+      "loss": 10.740188121795654,
+      "batches": 2,
+      "tokens": 32,
+      "available_tokens": 128,
+      "step": 9,
+      "elapsed_seconds": 0.9304576998110861
+    }
+  ],
+  "samples": [
+    {
+      "step": 0,
+      "prompt": "The children walked into the",
+      "seed": 42,
+      "temperature": 0.8,
+      "top_k": 50,
+      "text": "The children walked into the alcoholscape Isa…) format bagsShock condo"
+    },
+    {
+      "step": 3,
+      "prompt": "The children walked into the",
+      "seed": 42,
+      "temperature": 0.8,
+      "top_k": 50,
+      "text": "The children walked into theWindows ridicicas cosmicDead adversaries prem Link"
+    },
+    {
+      "step": 6,
+      "prompt": "The children walked into the",
+      "seed": 42,
+      "temperature": 0.8,
+      "top_k": 50,
+      "text": "The children walked into theDieBrexit111mallow Moe){ strongestBenz"
+    },
+    {
+      "step": 9,
+      "prompt": "The children walked into the",
+      "seed": 42,
+      "temperature": 0.8,
+      "top_k": 50,
+      "text": "The children walked into the intriguing fallouthidedesigned holds dizzologic901"
+    }
+  ],
+  "effective_batch_tokens": 32,
+  "timing_scope": "wall budget includes first compile, validation, samples, checkpoint IO; optimizer_seconds covers synchronized updates including first compile",
+  "resume_policy": "exact loader/optimizer/scaler/RNG state; schedule follows total elapsed wall time",
+  "budget_seconds": 60.0,
+  "stop_reason": "max_steps",
+  "resumes": 1
+}

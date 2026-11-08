@@ -40,6 +40,8 @@ pip install -r week03/requirements.txt
 | [08](week08/) | Multi-head attention, Transformer blocks, character GPT, A100 training and a Gradio model lab | ✅ |
 | [09](week09/) | Byte-level BPE, Unicode/UTF-8, regex pretokenization and cl100k_base compatibility | ✅ |
 | [10](week10/) | GPT-2 124M, pretrained weight import, logits parity, sampling and a fixed-batch training diagnostic | ✅ |
+| [11](week11/) | GPT-2 training speed, optimizer/schedule and gradient accumulation | ✅ L4: six measured stages, 300 updates |
+| [12](week12/) | FineWeb-Edu shards, held-out validation, timed training and matching HellaSwag evaluations | ✅ L4: 19,586 updates; HellaSwag 27.6% vs GPT-2 33.6% |
 
 ## Run Week 1
 
@@ -166,6 +168,27 @@ needed. Download each result ZIP before changing the runtime.
 See [week10/README.md](week10/README.md) for local checks and import commands,
 and [the Turkish submission report](week10/results/submission_report.md) for
 the measured results, position-embedding plots and the limits of these tests.
+
+## Run Week 11
+
+Open [week11/colab_training.ipynb](week11/colab_training.ipynb) in Colab on a
+T4 or A100. It benchmarks cumulative speed optimizations and runs 300 training
+update attempts using our Week 10 model, AdamW, clipping, warmup/cosine LR and
+gradient accumulation. Download the result ZIP before changing the runtime.
+See [week11/README.md](week11/README.md) for checks and the verified L4 results.
+
+## Run Week 12
+
+Use [week12/colab_training.ipynb](week12/colab_training.ipynb), or paste the
+[bootstrap](week12/colab_bootstrap.py) into a new cell in the connected Week 11
+notebook to retain its L4 runtime. Prepare 20M train tokens and a disjoint
+validation file, train for a 60-minute wall budget, then evaluate the trained
+checkpoint and published GPT-2 on the same first 1,000 HellaSwag examples.
+The completed L4 run processed 80,224,256 tokens in 60.20 minutes; final held-out
+NLL was 4.984965. On the same first 1,000 HellaSwag validation examples our
+checkpoint scored 27.6% and OpenAI GPT-2 33.6%. See the
+[GPU report](week12/results/nvidia_l4/submission_report.md) and
+[week12/README.md](week12/README.md) for scoring, source provenance and limits.
 
 ## Sources
 

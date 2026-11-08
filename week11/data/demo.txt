@@ -1,0 +1,15 @@
+The laboratory opens before the first train reaches the station. Ada puts a notebook on the desk and checks yesterday's measurements. A prediction is useful when another person can test it. She writes the settings beside every number so that a result can be reproduced later.
+
+Today the team is studying a language model. The model reads a sequence of tokens and predicts the next token at every position. The input and the target differ by one position. When they print the first batch, they inspect this shift before running a long experiment. A small indexing mistake could otherwise remain hidden behind a decreasing loss.
+
+The training text contains several paragraphs. A loader walks through the complete stream instead of returning the same batch forever. At the end of the stream it starts another pass. A document boundary separates the end from the beginning. Seeing the training text several times does not demonstrate that a model will understand a new document.
+
+Ada compares two ways to calculate attention. Both must preserve causality: a prediction may depend on earlier tokens, but it may not read the future. She tests their outputs and gradients on a small example. Only after this check does she measure the time required by each version on the same machine.
+
+The first few steps are slower because the system is preparing its work. Compilation has an additional setup cost. The team records this cost separately and waits for several warmup steps before measuring steady execution. They synchronize the device before reading the clock. Otherwise they might measure the time needed to submit work instead of the time needed to finish it.
+
+A larger batch would fill more memory than their device provides. They divide it into smaller pieces, average the losses, and accumulate the gradients before changing the weights. There is one optimizer update for the combined batch. Gradient clipping happens after all the pieces have contributed. The learning rate changes once for this update, too.
+
+In the afternoon the team reviews the figures. One optimization helps on their new device but is unavailable on an older one. Another makes very little difference for short sequences. They record both observations. A useful report describes the hardware, the batch shape, the precision, and the operations included in the measurement.
+
+Before leaving, Ada saves the source hashes and the raw measurements. The notebook includes a graph of the learning rate and a table of step times. Some cells remain marked as pending until somebody actually runs them on a GPU. Tomorrow the team will use a larger collection of real documents and a separate validation set to study generalization.

@@ -1,0 +1,13 @@
+{
+  "week10/model.py": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535",
+  "week11/training.py": "4f2726530f52a6b2a4ba42afde9d5a2b1848445aa94c315f2c7d3aba2051fe05",
+  "week12/common.py": "eef5d129baa5ee535e3f73712fef517178883def84119a6b3f8667949cd465db",
+  "week12/data.py": "1cea648faf5728b394b1928db9da29a2f11645f180d46c82468c7400fd288354",
+  "week12/evaluate.py": "5ccd1e957f189f6ba3d783825e42d3cb21d53f315ea40e8a8fcd140f7d0f5867",
+  "week12/make_colab_notebook.py": "9974626f7253809dfe4c07a8139b84963f8703c17d54cdfcf68976330dcca393",
+  "week12/prepare_data.py": "23aff9e61c8ebace9f756a6f076d0f59460348963781f560881a7776cb0e4094",
+  "week12/report.py": "5533dbc4e0e2ec1bce3657dc7cc647556d14bc9bf1c2992dfe46c30445d2fc7c",
+  "week12/test_pipeline.py": "ac5e975febb3379eed61e35a958116b9d4c3bfacb851d85992a367e273364f13",
+  "week12/train.py": "53b60b9c59560ed897c57e06534f8baa495497587e93fbb004ba0b1adbfb1dc2",
+  "week12/requirements.txt": "fbaa3a25f33137be3bf04bf3bff20eb9555bc54fe0d9bdf5f038fdb0ba664096"
+}

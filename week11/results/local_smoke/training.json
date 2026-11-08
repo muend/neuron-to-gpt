@@ -1,0 +1,224 @@
+{
+  "environment": {
+    "device": "cpu",
+    "hardware": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "torch": "2.14.0+cpu",
+    "python": "3.12.10",
+    "cuda": null,
+    "cpu_threads": 4,
+    "capability": null
+  },
+  "corpus": {
+    "filename": "demo.txt",
+    "sha256": "06d8f14166ad929c8be6a9179cf4dda3b73a8981562f4e25d6cc854597ad8b79",
+    "utf8_bytes": 2696,
+    "tokens_including_boundary": 2697,
+    "tokenizer": "UTF-8 bytes + boundary ID 256 (smoke only)",
+    "stream_policy": "cyclic, EOT-separated, no dropped tail"
+  },
+  "source_sha256": {
+    "week11/training.py": "4f2726530f52a6b2a4ba42afde9d5a2b1848445aa94c315f2c7d3aba2051fe05",
+    "week11/run_experiments.py": "6510737725b9effd2bfdf98c05e02e5e728725061ceef6158a55e0bf131f1b74",
+    "week11/requirements.txt": "ecd070dc12616b0a12ab23ebc74c6dde9e7a93091bcfef061aff27032249e2be",
+    "week10/model.py": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535"
+  },
+  "smoke_only": true,
+  "run_configuration": {
+    "batch_size": 2,
+    "sequence_length": 16,
+    "accumulation_steps": 2,
+    "steps": 12,
+    "lr_warmup": 2,
+    "warmup": 2,
+    "benchmark_steps": 5,
+    "compile": false
+  },
+  "settings": {
+    "tf32": false,
+    "precision": "fp32",
+    "compile": false,
+    "attention": "sdpa",
+    "force_flash": false,
+    "padded": true
+  },
+  "model_config": {
+    "block_size": 32,
+    "vocab_size": 384,
+    "n_layer": 2,
+    "n_head": 2,
+    "n_embd": 64,
+    "dropout": 0.0,
+    "weight_tying": true,
+    "attn_implementation": "sdpa"
+  },
+  "parameters": 126720,
+  "optimizer": {
+    "decay_tensors": 10,
+    "decay_parameters": 124928,
+    "no_decay_tensors": 18,
+    "no_decay_parameters": 1792,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "fused": false
+  },
+  "effective_batch_tokens": 64,
+  "batch_size": 2,
+  "sequence_length": 16,
+  "accumulation_steps": 2,
+  "planned_steps": 12,
+  "warmup_steps": 2,
+  "clip_global_norm": 1.0,
+  "status": "complete",
+  "history": [
+    {
+      "loss": 5.963034629821777,
+      "gradient_norm_before_clip": 4.306351661682129,
+      "skipped_update": false,
+      "finite": true,
+      "step": 1,
+      "learning_rate": 0.0003,
+      "milliseconds": 28.25539978221059,
+      "tokens_per_second": 2265.053777094103,
+      "tokens_seen": 64,
+      "corpus_passes": 0.023730070448646643
+    },
+    {
+      "loss": 5.867707252502441,
+      "gradient_norm_before_clip": 4.054426193237305,
+      "skipped_update": false,
+      "finite": true,
+      "step": 2,
+      "learning_rate": 0.0006,
+      "milliseconds": 23.13530002720654,
+      "tokens_per_second": 2766.3354235621578,
+      "tokens_seen": 128,
+      "corpus_passes": 0.047460140897293286
+    },
+    {
+      "loss": 5.715506553649902,
+      "gradient_norm_before_clip": 3.1819639205932617,
+      "skipped_update": false,
+      "finite": true,
+      "step": 3,
+      "learning_rate": 0.0006,
+      "milliseconds": 31.880900030955672,
+      "tokens_per_second": 2007.471556256485,
+      "tokens_seen": 192,
+      "corpus_passes": 0.07119021134593993
+    },
+    {
+      "loss": 5.588679313659668,
+      "gradient_norm_before_clip": 2.7496330738067627,
+      "skipped_update": false,
+      "finite": true,
+      "step": 4,
+      "learning_rate": 0.0005837170076121953,
+      "milliseconds": 23.75459996983409,
+      "tokens_per_second": 2694.215018618434,
+      "tokens_seen": 256,
+      "corpus_passes": 0.09492028179458657
+    },
+    {
+      "loss": 5.552219867706299,
+      "gradient_norm_before_clip": 2.2118494510650635,
+      "skipped_update": false,
+      "finite": true,
+      "step": 5,
+      "learning_rate": 0.0005368319996421239,
+      "milliseconds": 19.89169977605343,
+      "tokens_per_second": 3217.422378204513,
+      "tokens_seen": 320,
+      "corpus_passes": 0.11865035224323323
+    },
+    {
+      "loss": 5.4364728927612305,
+      "gradient_norm_before_clip": 2.431401491165161,
+      "skipped_update": false,
+      "finite": true,
+      "step": 6,
+      "learning_rate": 0.0004649999999999999,
+      "milliseconds": 18.825700040906668,
+      "tokens_per_second": 3399.6079753174313,
+      "tokens_seen": 384,
+      "corpus_passes": 0.14238042269187987
+    },
+    {
+      "loss": 5.395044326782227,
+      "gradient_norm_before_clip": 2.2939717769622803,
+      "skipped_update": false,
+      "finite": true,
+      "step": 7,
+      "learning_rate": 0.0003768850079700712,
+      "milliseconds": 14.394599944353104,
+      "tokens_per_second": 4446.111753533431,
+      "tokens_seen": 448,
+      "corpus_passes": 0.1661104931405265
+    },
+    {
+      "loss": 5.39625883102417,
+      "gradient_norm_before_clip": 2.4635226726531982,
+      "skipped_update": false,
+      "finite": true,
+      "step": 8,
+      "learning_rate": 0.0002831149920299288,
+      "milliseconds": 14.684900175780058,
+      "tokens_per_second": 4358.21825371042,
+      "tokens_seen": 512,
+      "corpus_passes": 0.18984056358917314
+    },
+    {
+      "loss": 5.376677513122559,
+      "gradient_norm_before_clip": 2.15401554107666,
+      "skipped_update": false,
+      "finite": true,
+      "step": 9,
+      "learning_rate": 0.00019500000000000002,
+      "milliseconds": 13.078799936920404,
+      "tokens_per_second": 4893.415321640721,
+      "tokens_seen": 576,
+      "corpus_passes": 0.2135706340378198
+    },
+    {
+      "loss": 5.341418266296387,
+      "gradient_norm_before_clip": 2.176818370819092,
+      "skipped_update": false,
+      "finite": true,
+      "step": 10,
+      "learning_rate": 0.00012316800035787594,
+      "milliseconds": 14.26360011100769,
+      "tokens_per_second": 4486.945757166109,
+      "tokens_seen": 640,
+      "corpus_passes": 0.23730070448646645
+    },
+    {
+      "loss": 5.347975730895996,
+      "gradient_norm_before_clip": 2.0767810344696045,
+      "skipped_update": false,
+      "finite": true,
+      "step": 11,
+      "learning_rate": 7.628299238780476e-05,
+      "milliseconds": 13.847399968653917,
+      "tokens_per_second": 4621.806270121144,
+      "tokens_seen": 704,
+      "corpus_passes": 0.26103077493511306
+    },
+    {
+      "loss": 5.298161506652832,
+      "gradient_norm_before_clip": 2.2809393405914307,
+      "skipped_update": false,
+      "finite": true,
+      "step": 12,
+      "learning_rate": 6e-05,
+      "milliseconds": 12.941100168973207,
+      "tokens_per_second": 4945.483704194061,
+      "tokens_seen": 768,
+      "corpus_passes": 0.28476084538375973
+    }
+  ],
+  "successful_updates": 12,
+  "complete_corpus_passes": 0
+}

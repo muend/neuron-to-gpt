@@ -1,0 +1,60 @@
+{
+  "status": "complete",
+  "tokenizer": "gpt2",
+  "eot_token": 50256,
+  "dtype": "uint16",
+  "source": {
+    "filename": "demo.txt",
+    "sha256": "06d8f14166ad929c8be6a9179cf4dda3b73a8981562f4e25d6cc854597ad8b79",
+    "format": "UTF-8 blank-line documents"
+  },
+  "requested_tokens": {
+    "train": 256,
+    "val": 128
+  },
+  "shard_size": 128,
+  "duplicates_removed": 0,
+  "document_sha256": {
+    "train": [
+      "137ae394d66d4c52ebc909e8be0b6fd911fd023ddd737f010fd28b352ce7887f",
+      "1d2c3cdadb9e20fbb471b3ebbdf5819e9f4a45c3ed64534a91362a7cd43bd224",
+      "2076e17e2dd9628d6fc3347f6acc4558b277ba69b62daa22b0a2c2945d0b64e2",
+      "65b95071c2459e35f5885092763ef7608d49e1769c1419610ef2ce50a817bf9c"
+    ],
+    "val": [
+      "55b4ab4f02c5e1bf1b1ed682e4395af2369bf6f2e80467a9fc74d04427632051",
+      "69063eb8bf5403753f20744ac7af7ad9fa230a0ec566f2165929997db15367c5",
+      "0bee78b5290f26e8f8d7a1f8e0d23c5e1a42b3a7f1f54acf8da088bc4857c895"
+    ]
+  },
+  "split_policy": "document-disjoint; exact-text dedup; first unique docs val, then train; boundary document remainder discarded, EOT retained",
+  "splits": {
+    "train": {
+      "tokens": 256,
+      "documents": 4,
+      "shards": [
+        {
+          "filename": "train_00000.npy",
+          "tokens": 128,
+          "sha256": "b7c6509ae07d2e7c112eab955b1a43e4c5968cc111a5672a6a120f40aa90c79f"
+        },
+        {
+          "filename": "train_00001.npy",
+          "tokens": 128,
+          "sha256": "73e641cdb2671a6ba88c984c458f50c1d2a7d6461f7b14f461926624629a5e41"
+        }
+      ]
+    },
+    "val": {
+      "tokens": 128,
+      "documents": 3,
+      "shards": [
+        {
+          "filename": "val_00000.npy",
+          "tokens": 128,
+          "sha256": "d1763621257d7b648ad2daee06e52ae5de356c8455a4d7cbea5b82bad3ff074d"
+        }
+      ]
+    }
+  }
+}
