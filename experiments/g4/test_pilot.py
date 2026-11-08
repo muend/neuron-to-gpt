@@ -7,7 +7,9 @@ import shutil
 import tempfile
 import unittest
 
-from experiments.g4.pilot import prepare_fresh, remaining_seconds, pilot_lr
+import copy
+import torch
+from experiments.g4.pilot import BASE_SHA, prepare_fresh, remaining_seconds, pilot_lr, resume_evidence
 from week12.data import ShardLoader, ShardWriter
 
 
@@ -19,6 +21,71 @@ class Encoding:
 
 
 class PilotTests(unittest.TestCase):
+    def resume_fixture(self):
+        settings = dict(precision="bf16")
+        provenance = dict(base_checkpoint_sha256=BASE_SHA, data_manifest_sha256="data",
+                          source_sha256={"week10/model.py": "model", "experiments/g4/pilot.py": "old"})
+        checkpoint = dict(model_config=dict(dropout=0), loader_tokens_seen=72,
+                          optimizer=dict(state={0: dict(step=torch.tensor(19588.)),
+                                                1: dict(step=torch.tensor(19588.))}),
+                          evidence=dict(settings=settings, smoke_only=False, provenance=provenance,
+                                        base_updates=19586, successful_updates=1, effective_batch_tokens=32,
+                                        attempted_updates=1, budget_seconds=3372, deadline="old"))
+        new_provenance = copy.deepcopy(provenance)
+        new_provenance["source_sha256"]["experiments/g4/pilot.py"] = "new"
+        return checkpoint, settings, new_provenance
+
+    def test_resume_replays_uncommitted_microbatches_and_counts_committed_step(self):
+        checkpoint, settings, provenance = self.resume_fixture()
+        evidence, tokens = resume_evidence(checkpoint, settings, provenance)
+        self.assertEqual(tokens, 64)
+        self.assertEqual(evidence["successful_updates"], 2)
+        self.assertEqual(evidence["resumes"][-1]["replayed_uncommitted_tokens"], 8)
+        self.assertEqual(evidence["resumes"][-1]["previous_source_sha256"]["experiments/g4/pilot.py"], "old")
+        self.assertEqual(checkpoint["evidence"]["successful_updates"], 1)
+
+    def test_resume_rejects_different_core_source_and_inconsistent_steps(self):
+        checkpoint, settings, provenance = self.resume_fixture()
+        bad = copy.deepcopy(provenance)
+        bad["source_sha256"]["week10/model.py"] = "different"
+        with self.assertRaisesRegex(ValueError, "core source"):
+            resume_evidence(checkpoint, settings, bad)
+        bad = copy.deepcopy(provenance)
+        bad["data_manifest_sha256"] = "different"
+        with self.assertRaises(ValueError):
+            resume_evidence(checkpoint, settings, bad)
+        checkpoint["optimizer"]["state"][1]["step"] += 1
+        with self.assertRaisesRegex(ValueError, "counters disagree"):
+            resume_evidence(checkpoint, settings, provenance)
+
+    def test_adamw_restored_state_matches_uninterrupted_next_update(self):
+        torch.manual_seed(42)
+        model = torch.nn.Linear(3, 2)
+        optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(.9, .95))
+        x, target = torch.randn(4, 3), torch.randn(4, 2)
+        def update(net, opt):
+            opt.zero_grad(set_to_none=True)
+            (net(x) - target).square().mean().backward()
+            opt.step()
+        for _ in range(3):
+            update(model, optimizer)
+        checkpoint, settings, provenance = self.resume_fixture()
+        checkpoint["optimizer"] = copy.deepcopy(optimizer.state_dict())
+        checkpoint["evidence"].update(base_updates=1, successful_updates=2)
+        checkpoint["loader_tokens_seen"] = 64
+        evidence, tokens = resume_evidence(checkpoint, settings, provenance)
+        restored = torch.nn.Linear(3, 2)
+        restored.load_state_dict(copy.deepcopy(model.state_dict()))
+        restored_optimizer = torch.optim.AdamW(restored.parameters(), lr=1.)
+        restored_optimizer.load_state_dict(checkpoint["optimizer"])
+        update(model, optimizer)
+        update(restored, restored_optimizer)
+        self.assertEqual((evidence["successful_updates"], tokens), (2, 64))
+        for actual, expected in zip(restored.parameters(), model.parameters()):
+            torch.testing.assert_close(actual, expected, rtol=0, atol=0)
+        for actual, expected in zip(restored_optimizer.state.values(), optimizer.state.values()):
+            torch.testing.assert_close(actual["exp_avg"], expected["exp_avg"], rtol=0, atol=0)
+
     def test_old_documents_excluded_and_validation_preserved(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

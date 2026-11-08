@@ -16,10 +16,9 @@ cells = [cell("markdown", """
     # G4 — 90-minute continuation of our L4 GPT-2
 
     Run the cells in order on the connected RTX PRO 6000 Blackwell GPU.
-    Preparation and final tests are additional to the training cap. Training
-    stops starting new updates by **18:48 Turkey time today**, leaving time
-    for final save and evaluation before the 19:00 deadline. A slow external
-    download or Drive copy can still delay completion.
+    Preparation and final tests are additional to the training cap. The run
+    has a **90-minute total budget**, with no clock-time delivery cutoff.
+    Final checkpoint saving and evaluation can extend beyond that budget.
 
     The original L4 artifacts are read only. New results go to a distinct
     `MyDrive/YZ50/g4_pilot/<timestamp>` folder. No GPU outcome is pre-filled.
@@ -76,8 +75,6 @@ cells = [cell("markdown", """
     assert len(candidates) == 1, f'Expected one backed-up token archive: {candidates}'
     TOKENS = candidates[0]
     NOW = datetime.now(ZoneInfo('Europe/Istanbul'))
-    DEADLINE = NOW.replace(hour=18, minute=48, second=0, microsecond=0).isoformat()
-    assert datetime.fromisoformat(DEADLINE) > NOW, "Today 18:48 training deadline has passed"
     RUN = NOW.strftime('%Y%m%d_%H%M%S')
     DATA = ROOT / 'experiments/g4/data/fresh200m'
     OUT = ROOT / 'experiments/g4/outputs' / RUN
@@ -87,7 +84,7 @@ cells = [cell("markdown", """
     print('Copying L4 checkpoint to local disk...', flush=True)
     if not LOCAL_CHECKPOINT.exists():
         shutil.copyfile(BASE / 'last.pt', LOCAL_CHECKPOINT)
-    print('New backup:', BACKUP, '| update cutoff:', DEADLINE)
+    print('New backup:', BACKUP, '| training budget: 90 minutes, no delivery cutoff')
     """), cell("code", """
     # Up to 200M fresh tokens, with a soft four-minute preparation budget.
     # The manifest records the actual number prepared; all original docs are excluded.
@@ -95,9 +92,8 @@ cells = [cell("markdown", """
         '--train-tokens', 200_000_000, '--prepare-seconds', 240)
     """), cell("code", """
     # 90-minute cap including compile, validation and periodic saves.
-    # The 18:48 deadline shortens this automatically if setup took longer.
     run('train', '--checkpoint', LOCAL_CHECKPOINT, '--data', DATA,
-        '--output', OUT, '--backup', BACKUP, '--minutes', 90, '--deadline', DEADLINE,
+        '--output', OUT, '--backup', BACKUP, '--minutes', 90,
         '--batch-size', 8, '--context', 1024, '--accumulation', 4)
     """), cell("code", """
     # Evaluate validation-selected best.pt and OpenAI GPT-2 on identical examples.

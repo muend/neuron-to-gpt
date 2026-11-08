@@ -1,6 +1,7 @@
 """Bounded continuation of our L4 GPT-2, with fresh data and fixed validation."""
 
 import argparse
+import copy
 from dataclasses import asdict
 from datetime import datetime
 import gc
@@ -49,6 +50,52 @@ def pilot_lr(step, elapsed, budget, warmup=30, peak=3e-4, floor=3e-5):
     ramp = min(1.0, (step + 1) / warmup)
     progress = min(1.0, max(0.0, elapsed / budget))
     return ramp * (floor + (peak - floor) * (1 + math.cos(math.pi * progress)) / 2)
+
+
+def resume_evidence(checkpoint, settings, provenance):
+    """Validate state and align interrupted microbatches to committed AdamW steps.
+
+    BF16 has no skipped scaler updates and this model has zero dropout and no
+    mutable training buffers. Uncommitted microbatches can therefore be read
+    again. AdamW tensor step counters must all agree before accepting a save.
+    """
+    evidence = copy.deepcopy(checkpoint["evidence"])
+    if (evidence["settings"] != settings or evidence["smoke_only"]
+            or evidence["provenance"]["base_checkpoint_sha256"] != BASE_SHA
+            or evidence["provenance"]["data_manifest_sha256"] != provenance["data_manifest_sha256"]):
+        raise ValueError("Resume settings, base checkpoint or dataset differs")
+    previous_sources = evidence["provenance"]["source_sha256"]
+    for name in set(previous_sources) | set(provenance["source_sha256"]):
+        if name != "experiments/g4/pilot.py" and previous_sources.get(name) != provenance["source_sha256"].get(name):
+            raise ValueError(f"Resume core source differs: {name}")
+    if settings["precision"] != "bf16" or checkpoint["model_config"]["dropout"] != 0:
+        raise ValueError("Interrupted-state alignment requires BF16 and zero dropout")
+    states = checkpoint["optimizer"]["state"].values()
+    counters = {float(state["step"]) for state in states if "step" in state}
+    if len(counters) != 1:
+        raise ValueError("AdamW step counters disagree; use an earlier complete checkpoint")
+    total_steps = counters.pop()
+    if not math.isfinite(total_steps) or not total_steps.is_integer():
+        raise ValueError("Invalid AdamW step counter")
+    committed = int(total_steps) - evidence["base_updates"]
+    batch_tokens = evidence["effective_batch_tokens"]
+    committed_tokens = committed * batch_tokens
+    uncommitted = checkpoint["loader_tokens_seen"] - committed_tokens
+    if committed < 0 or not 0 <= uncommitted <= batch_tokens:
+        raise ValueError("Loader state is inconsistent with committed optimizer steps")
+    if abs(committed - evidence["successful_updates"]) > 1:
+        raise ValueError("Optimizer and logged step counts differ by more than one update")
+    audit = dict(previous_successful_updates=evidence["successful_updates"],
+                 committed_updates=committed, replayed_uncommitted_tokens=uncommitted,
+                 previous_source_sha256=previous_sources,
+                 previous_budget_seconds=evidence["budget_seconds"], previous_deadline=evidence.get("deadline"))
+    evidence["successful_updates"] = committed
+    evidence["attempted_updates"] = committed  # BF16: every completed step is successful.
+    evidence["tokens_seen"] = committed_tokens
+    evidence.setdefault("resumes", []).append(audit)
+    evidence["provenance"] = provenance
+    evidence.pop("error", None)
+    return evidence, committed_tokens
 
 
 def prepare_fresh(documents, encoding, directory, *, old_manifest, val_reader,
@@ -159,11 +206,14 @@ def train(args):
     import tiktoken
     budget = remaining_seconds(args.minutes, args.deadline)
     started = time.perf_counter()
-    elapsed = lambda: time.perf_counter() - started
-    if (args.output / "training.json").exists():
+    prior_elapsed = 0.0
+    elapsed = lambda: prior_elapsed + time.perf_counter() - started
+    if (args.output / "training.json").exists() and not args.resume:
         raise ValueError("Choose a new run directory; pilot never overwrites an existing run")
     args.output.mkdir(parents=True, exist_ok=True)
-    if sha256(args.checkpoint) != BASE_SHA:
+    checkpoint_path = args.resume or args.checkpoint
+    checkpoint_digest = sha256(checkpoint_path)
+    if not args.resume and checkpoint_digest != BASE_SHA:
         raise ValueError("Expected our verified L4 checkpoint, not OpenAI weights or another run")
     torch.set_num_threads(4)
     torch.manual_seed(1337)
@@ -172,7 +222,7 @@ def train(args):
     if precision != "bf16":
         raise ValueError("This G4 pilot requires CUDA BF16 support")
     set_tf32(True)
-    checkpoint = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
+    checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
     config = GPTConfig(**checkpoint["model_config"])
     raw = GPT(config).to(device).train()
     raw.load_state_dict(checkpoint["model"])
@@ -180,7 +230,6 @@ def train(args):
     optimizer.load_state_dict(checkpoint["optimizer"])
     scaler = make_scaler(device, precision)
     base = checkpoint["evidence"]
-    del checkpoint
     loader = ShardLoader(args.data, "train", args.batch_size, args.context)
     # Keep B/T/target count identical to the L4 validation protocol.
     val = ShardLoader(args.data, "val", 4, 256)
@@ -210,9 +259,28 @@ def train(args):
                     budget_seconds=budget, deadline=args.deadline,
                     timing_scope="90-minute cap includes loading, compilation, validation and periodic IO; final save/test extra",
                     validation=[], samples=[], history=[], optimizer_seconds=0.0)
+    if args.resume:
+        evidence, loader.tokens_seen = resume_evidence(checkpoint, evidence["settings"], evidence["provenance"])
+        if not (args.output / "best.pt").exists():
+            raise ValueError("Resume needs the original best.pt in the same output directory")
+        scaler.load_state_dict(checkpoint["scaler"])
+        torch.set_rng_state(checkpoint["rng_cpu"])
+        if checkpoint["rng_cuda"]:
+            torch.cuda.set_rng_state_all(checkpoint["rng_cuda"])
+        prior_elapsed = evidence["elapsed_wall_seconds"]
+        budget = min(args.minutes * 60, prior_elapsed + remaining_seconds(args.minutes, args.deadline))
+        if budget <= prior_elapsed:
+            raise ValueError("Requested total budget has already been consumed")
+        evidence["resumes"][-1].update(checkpoint_sha256=checkpoint_digest,
+                                       requested_total_budget_seconds=budget)
+        evidence.update(status="running", environment=environment(device),
+                        budget_seconds=budget, deadline=args.deadline)
+        print(f"RESUMED step {evidence['successful_updates']} | {loader.tokens_seen:,} tokens "
+              f"| {prior_elapsed/60:.2f}/{budget/60:.2f} min | deadline {args.deadline}", flush=True)
+    del checkpoint
     save_json(args.output / "data_manifest.json", manifest)
     model = torch.compile(raw, fullgraph=True) if not args.no_compile else raw
-    best_loss = float("inf")
+    best_loss = evidence.get("best_validation_loss", float("inf"))
 
     def persist():
         evidence.update(elapsed_wall_seconds=elapsed(), tokens_seen=loader.tokens_seen)
@@ -238,7 +306,7 @@ def train(args):
             temporary.replace(args.output / "best.pt")
         persist()
 
-    next_eval, next_save = 300.0, 600.0
+    next_eval, next_save = elapsed() + 300.0, elapsed() + 600.0
     try:
         evaluate()
         with (args.output / "updates.jsonl").open("a", encoding="utf-8", buffering=1) as log:
@@ -298,6 +366,10 @@ def finish(args):
     cache = prepare_hellaswag(args.data / "hellaswag", 2000)
     examples = read_json(cache)["examples"]
     encoding = tiktoken.get_encoding("gpt2")
+    evaluation_id = hashlib.sha256((sha256(args.output / "best.pt") +
+        json.dumps(sources(), sort_keys=True)).encode()).hexdigest()[:16]
+    evaluation_dir = args.output / "evaluations" / evaluation_id
+    evaluation_dir.mkdir(parents=True, exist_ok=True)
     results = {}
     for task in ("own", "openai"):
         if task == "own":
@@ -322,7 +394,7 @@ def finish(args):
                               selection=f"validation indices [{offset},{offset+1000})", example_count=1000,
                               scoring="ending-only mean NLL, common 50257 vocabulary, FP32, TF32 off")
             results[f"{task}_{label}"] = evaluate_model(model, selection, encoding, device, provenance,
-                args.output / f"hellaswag_{task}_{label}.json")
+                evaluation_dir / f"hellaswag_{task}_{label}.json")
         del model
         gc.collect()
         torch.cuda.empty_cache()
@@ -351,12 +423,15 @@ def finish(args):
                    optimizer_tokens_per_second=record["tokens_seen"]/max(record["optimizer_seconds"], 1e-9),
                    wall_tokens_per_second=record["tokens_seen"]/max(record["elapsed_wall_seconds"], 1e-9),
                    fresh_corpus_tokens=read_json(args.output / "data_manifest.json")["splits"]["train"]["tokens"],
+                   evaluation_directory=f"evaluations/{evaluation_id}",
                    hellaswag_percent=dict(zip(names, scores)),
                    interpretation="Pilot; new heldout1000 is primary comparison. A point-estimate lead alone does not establish superiority.")
     save_json(args.output / "summary.json", summary)
     backup(args.output, args.backup)
-    for path in args.output.glob("hellaswag_*.json"):
-        shutil.copyfile(path, args.backup / path.name)
+    evaluation_backup = args.backup / "evaluations" / evaluation_id
+    evaluation_backup.mkdir(parents=True, exist_ok=True)
+    for path in evaluation_dir.glob("hellaswag_*.json"):
+        shutil.copyfile(path, evaluation_backup / path.name)
     for name in ("summary.json", "summary.png"):
         shutil.copyfile(args.output / name, args.backup / name)
     print(json.dumps(summary, indent=2), flush=True)
@@ -369,6 +444,7 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("experiments/g4/outputs/pilot90"))
     parser.add_argument("--backup", type=Path)
     parser.add_argument("--checkpoint", type=Path)
+    parser.add_argument("--resume", type=Path, help="Resume G4 last.pt; --minutes is TOTAL G4 run time")
     parser.add_argument("--tokens-zip", type=Path)
     parser.add_argument("--train-tokens", type=int, default=200_000_000)
     parser.add_argument("--prepare-seconds", type=float, default=240)
@@ -386,8 +462,8 @@ def main():
         parser.error("prepare requires --tokens-zip from our L4 backup")
     if args.task in ("train", "finish") and not args.backup:
         parser.error("train/finish require a separate --backup directory")
-    if args.task == "train" and not args.checkpoint:
-        parser.error("train requires --checkpoint from our L4 backup")
+    if args.task == "train" and not (args.checkpoint or args.resume):
+        parser.error("train requires --checkpoint from L4 or --resume from G4")
     if args.task in ("train", "finish"):
         forbidden = {args.output.resolve()}
         if args.checkpoint:
