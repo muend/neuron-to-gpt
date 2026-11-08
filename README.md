@@ -4,6 +4,51 @@ A learning journal that starts with a single neuron, moves through
 character-level language models, and builds toward the core ideas behind GPT.
 Each week has its own directory with runnable Python files and concept notes.
 
+[Results](#measured-results) · [Curriculum](#weeks) · [Setup](#setup) · [G4 evidence](#g4-continuation-experiment)
+
+**Final experiment:** our own 124M GPT-2 checkpoint was continued on an NVIDIA
+RTX PRO 6000 Blackwell GPU for 90 minutes. Validation loss fell from **4.985 to
+3.666**; HellaSwag accuracy on the original 1,000 examples improved from **27.6%
+to 32.3%**. The matching OpenAI GPT-2 reference scored **33.6%** and remained
+ahead on a separate held-out cohort as well.
+
+![Measured G4 training and evaluation](experiments/g4/results/nvidia_rtx_pro6000/overview.png)
+
+## Measured results
+
+| Evaluation | Our L4 checkpoint | Our G4 continuation | OpenAI GPT-2 |
+|---|---:|---:|---:|
+| FineWeb validation NLL, fixed 32,768 targets | 4.984965 | **3.665616** | Not measured |
+| HellaSwag, original validation indices 0–999 | 276/1,000 · 27.6% | **323/1,000 · 32.3%** | 336/1,000 · 33.6% |
+| HellaSwag, additional held-out indices 1,000–1,999 | Not measured | **305/1,000 · 30.5%** | 337/1,000 · 33.7% |
+
+The G4 run processed **1,247,182,848 additional tokens** in **90.01 minutes**,
+with **38,061 successful updates**. Including the earlier L4 run, the model saw
+**1,327,407,104 tokens**. The G4 corpus contains **200M fresh tokens**, processed
+about **6.24 times**; processed tokens are not unique data. Throughput over the
+G4 run wall time was **230,933 token/s**.
+
+The model has **12 blocks, 12 heads, width 768, and 1,024 positions**. Its tied
+embedding/output table is padded to 50,304 entries, giving **124,475,904 unique
+parameters**. GPT-2 tokenization uses 50,257 IDs; padding classes are excluded
+from sampling and HellaSwag scoring. Week 10 imports OpenAI weights to verify
+the implementation; Week 12 starts from random weights and G4 continues that
+trained checkpoint. OpenAI GPT-2 is a separate evaluation reference.
+
+Both models use the same HellaSwag examples, ending-only mean token NLL,
+the common 50,257-token vocabulary, FP32 and TF32 disabled. The G4 checkpoint
+was selected by validation loss; the additional 1,000 examples were reserved for
+the pilot comparison. This result does not establish general model parity.
+Training context, batch, data and hardware differ between L4 and G4, so their
+throughputs are not a controlled hardware speed comparison.
+
+- [G4 experiment report — Türkçe](experiments/g4/results/nvidia_rtx_pro6000/report.md)
+- [G4 raw records, predictions and runtime sources](experiments/g4/results/nvidia_rtx_pro6000/)
+- [G4 training guide and notebook](experiments/g4/README.md)
+- [Original L4 training report](week12/results/nvidia_l4/submission_report.md)
+
+## Learning path
+
 The first two weeks build derivatives, gradient descent, and backpropagation
 without machine-learning libraries. Week 3 moves to PyTorch to show how the
 previously implemented `backward()` mechanism scales from scalar values to
@@ -42,6 +87,7 @@ pip install -r week03/requirements.txt
 | [10](week10/) | GPT-2 124M, pretrained weight import, logits parity, sampling and a fixed-batch training diagnostic | ✅ |
 | [11](week11/) | GPT-2 training speed, optimizer/schedule and gradient accumulation | ✅ L4: six measured stages, 300 updates |
 | [12](week12/) | FineWeb-Edu shards, held-out validation, timed training and matching HellaSwag evaluations | ✅ L4: 19,586 updates; HellaSwag 27.6% vs GPT-2 33.6% |
+| [G4 pilot](experiments/g4/) | 90-minute continuation, fresh data, verified checkpoint resume and paired evaluations | ✅ 38,061 updates; held-out HellaSwag 30.5% vs GPT-2 33.7% |
 
 ## Run Week 1
 
@@ -190,6 +236,53 @@ checkpoint scored 27.6% and OpenAI GPT-2 33.6%. See the
 [GPU report](week12/results/nvidia_l4/submission_report.md) and
 [week12/README.md](week12/README.md) for scoring, source provenance and limits.
 
+## G4 continuation experiment
+
+The [G4 notebook](https://colab.research.google.com/github/muend/neuron-to-gpt/blob/main/experiments/g4/colab_pilot.ipynb)
+continues the specific verified L4 checkpoint on fresh FineWeb-Edu data. It
+requires the owner's backed-up checkpoint and token archive and verifies that
+checkpoint's hash. A fresh clone includes the evidence rather than trained
+weights or token shards. The recorded G4 environment was **PyTorch 2.14.1+cu130,
+CUDA 13.0, Python 3.13.16**; requirements use version ranges, not a locked environment.
+
+The final run uses B=8, T=1024, accumulation=4 (32,768 tokens/update), BF16,
+SDPA, torch.compile and fused AdamW. The total budget is 90 minutes across G4
+sessions. It includes loading, compilation, validation and periodic IO; data
+preparation, paused downtime and final evaluation are outside that budget.
+Exact settings and resume history are in the recorded `training.json`.
+
+### Verify the published evidence
+
+```bash
+python -m pip install -r week12/requirements.txt
+python experiments/g4/analyze_results.py --check
+```
+
+This check needs no GPU, checkpoint, dataset download or model API. Omit
+`--check` to regenerate the analysis, report and figure. Implementation checks:
+
+```bash
+python -m unittest discover -s week10 -p "test_*.py"
+python -m unittest discover -s week11 -p "test_*.py"
+python -m unittest discover -s week12 -p "test_*.py"
+python -m unittest experiments.g4.test_pilot
+```
+
+The published G4 evidence contains all 38,061 update rows, 19 validation checks,
+generated samples, per-example scores for four HellaSwag evaluations, source
+snapshots, and file/checkpoint hashes. Local verification checks exported bytes,
+token/update accounting and predictions reconstructed from saved NLL scores.
+Colab separately verified the token shards and their Drive copies, plus both
+checkpoint backups. **GPU inference was not independently rerun locally.**
+
+Checkpoint files, token arrays, raw corpora, caches, virtual environments,
+correspondence and local transport bundles are excluded from Git. Data manifests
+contain document/shard hashes and metadata, not source text. Benchmark questions
+are fetched from the pinned source rather than copied into the repository.
+This is a base language-model study, not a chat assistant or production service;
+generated text can repeat itself or lose coherence. Confidence intervals and
+paired comparisons are documented in the [G4 report](experiments/g4/results/nvidia_rtx_pro6000/report.md).
+
 ## Sources
 
 - 3Blue1Brown — [But what is a neural network?](https://www.youtube.com/watch?v=aircAruvnKk)
@@ -205,3 +298,6 @@ checkpoint scored 27.6% and OpenAI GPT-2 33.6%. See the
 - Andrej Karpathy — [Let's build GPT](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 - Bengio et al. — [A Neural Probabilistic Language Model](https://www.jmlr.org/papers/volume3/bengio03a/bengio03a.pdf)
 - PyTorch — [Broadcasting semantics](https://pytorch.org/docs/stable/notes/broadcasting.html)
+- Andrej Karpathy — [Let's reproduce GPT-2](https://www.youtube.com/watch?v=l8pRSuU81PU), [build-nanogpt](https://github.com/karpathy/build-nanogpt)
+- Brown et al. — [Language Models are Few-Shot Learners](https://arxiv.org/abs/2005.14165)
+- [FineWeb-Edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu), [HellaSwag](https://arxiv.org/abs/1905.07830), [evaluation dataset](https://huggingface.co/datasets/Rowan/hellaswag)

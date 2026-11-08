@@ -1,8 +1,32 @@
 # G4: 90-minute GPT-2 continuation pilot
 
 Continue our verified 124M L4 checkpoint, retaining AdamW moments. This is an
-experiment separate from the Week 11/12 results. No GPU result is claimed by
-these scripts before execution. See `colab_pilot.ipynb` for sequential cells.
+experiment separate from the Week 11/12 results. The completed run and its
+byte-verified source snapshots are in [results/nvidia_rtx_pro6000](results/nvidia_rtx_pro6000/).
+See `colab_pilot.ipynb` for sequential cells.
+
+## Completed run
+
+| Metric | Recorded result |
+|---|---:|
+| Model | 124,475,904 parameters; same architecture as the L4 checkpoint |
+| Successful G4 updates | 38,061 |
+| Additional processed tokens | 1,247,182,848; repeats included |
+| Fresh training corpus | 200M tokens, processed 6.2359 times |
+| G4 run wall time | 90.0104 minutes |
+| Wall / optimizer throughput | 230,933 / 236,812 token/s |
+| Fixed validation NLL | 4.984965 → 3.665616 |
+| Original HellaSwag 1,000 | Own 32.3%; GPT-2 33.6% |
+| Additional held-out 1,000 | Own 30.5%; GPT-2 33.7% |
+
+The model remains below the GPT-2 reference on both cohorts. L4 scored 27.6%
+on the original cohort, so continuation improved that score by 4.7 percentage
+points. The [report](results/nvidia_rtx_pro6000/report.md) documents the protocol,
+uncertainty, samples and checkpoint/data provenance.
+
+![Recorded G4 results](results/nvidia_rtx_pro6000/overview.png)
+
+## Training and evaluation protocol
 
 The pilot uses BF16, PyTorch SDPA, fused AdamW, gradient clipping at 1,
 `torch.compile`, context 1024 and a 32,768-token effective batch (B8, accumulation
@@ -61,7 +85,26 @@ run are recorded. The checkpoint must have the verified L4 SHA-256. Outputs,
 token shards and weights are ignored by Git; small verified results can be
 published separately after reviewing an actual run.
 
-Local validation:
+## Verification and evidence
+
+`runtime_verification.json` records the Colab checks of all 201 token shards,
+both Drive checkpoint copies and saved evaluation predictions. The published
+source snapshots and raw results are preserved byte-for-byte by `.gitattributes`.
+Local verification does not rerun model inference or require private weights:
+
+```bash
+python experiments/g4/analyze_results.py --check
+python experiments/g4/analyze_results.py
+```
+
+The second command regenerates `analysis.json`, `report.md` and `overview.png`.
+Benchmark question text is not republished; dataset revision and cohort hashes
+are recorded in `selection_manifest.json`. The 38,061 per-update records and
+all four sets of per-example scores are included. Trained weights and token
+shards stay in the private Drive backup, including `tokens/manifest.json` and
+the 201 verified NPY shards needed for an exact data restore.
+
+Implementation checks:
 
 ```powershell
 .\week10\.venv\Scripts\python.exe -m unittest experiments.g4.test_pilot

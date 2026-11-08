@@ -1,0 +1,21 @@
+{
+  "base_validation_loss": 4.984965160489082,
+  "best_validation_loss": 3.665615923702717,
+  "best_step": 38061,
+  "additional_tokens": 1247182848,
+  "selected_checkpoint_additional_tokens": 1247182848,
+  "total_tokens_including_L4": 1327407104,
+  "training_minutes": 90.01040099834998,
+  "optimizer_tokens_per_second": 236811.75647708858,
+  "wall_tokens_per_second": 230933.09850248354,
+  "fresh_corpus_tokens": 200000000,
+  "evaluation_directory": "evaluations/9ed20912121bf392",
+  "hellaswag_percent": {
+    "L4/course": 27.6,
+    "G4/course": 32.300000000000004,
+    "GPT2/course": 33.6,
+    "G4/heldout": 30.5,
+    "GPT2/heldout": 33.7
+  },
+  "interpretation": "Pilot; new heldout1000 is primary comparison. A point-estimate lead alone does not establish superiority."
+}

@@ -1,0 +1,22 @@
+{
+  "dataset": "Rowan/hellaswag",
+  "revision": "218ec52e09a7e7462a5400043bb9a69a41d06b76",
+  "split": "validation",
+  "example_count": 2000,
+  "cohorts": {
+    "course1000": {
+      "indices": [
+        0,
+        1000
+      ],
+      "selection_sha256": "d22e4539da67caea54cb6ec7d7ab538a5197dab7bf2bed42e0dc0d19764bf73e"
+    },
+    "heldout1000": {
+      "indices": [
+        1000,
+        2000
+      ],
+      "selection_sha256": "8e439d56a679c62bd42749682da0eb93c6f32dc445095d7dc4dde7db6c109623"
+    }
+  }
+}

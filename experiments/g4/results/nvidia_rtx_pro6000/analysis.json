@@ -1,0 +1,89 @@
+{
+  "status": "verified",
+  "imported_files": 24,
+  "update_rows": 38061,
+  "source_hashes_verified": true,
+  "predictions_recomputed_from_saved_scores": true,
+  "model_inference_rerun_locally": false,
+  "checkpoints_in_git": false,
+  "data_shards_in_git": false,
+  "corpus_passes": 6.23591424,
+  "validation_loss_change": -1.3193492367863655,
+  "scores": {
+    "course1000": {
+      "own": {
+        "correct": 323,
+        "total": 1000,
+        "accuracy": 0.323,
+        "wilson95": [
+          0.2947418927752481,
+          0.35261277972863847
+        ]
+      },
+      "openai": {
+        "correct": 336,
+        "total": 1000,
+        "accuracy": 0.336,
+        "wilson95": [
+          0.30740158982270954,
+          0.36585358696055253
+        ]
+      }
+    },
+    "heldout1000": {
+      "own": {
+        "correct": 305,
+        "total": 1000,
+        "accuracy": 0.305,
+        "wilson95": [
+          0.2772552724809733,
+          0.3342371633283932
+        ]
+      },
+      "openai": {
+        "correct": 337,
+        "total": 1000,
+        "accuracy": 0.337,
+        "wilson95": [
+          0.30837644459788477,
+          0.36687107866840624
+        ]
+      }
+    }
+  },
+  "comparisons": {
+    "course1000": {
+      "counts": {
+        "both": 235,
+        "own_only": 88,
+        "reference_only": 101,
+        "neither": 576
+      },
+      "difference_own_minus_reference": -0.013000000000000012,
+      "paired_bootstrap95": [
+        -0.04,
+        0.014
+      ],
+      "bootstrap_resamples": 20000,
+      "bootstrap_seed": 20261108,
+      "mcnemar_exact_two_sided_p": 0.3827845942503986
+    },
+    "heldout1000": {
+      "counts": {
+        "both": 247,
+        "own_only": 58,
+        "reference_only": 90,
+        "neither": 605
+      },
+      "difference_own_minus_reference": -0.03200000000000003,
+      "paired_bootstrap95": [
+        -0.056,
+        -0.008
+      ],
+      "bootstrap_resamples": 20000,
+      "bootstrap_seed": 20261108,
+      "mcnemar_exact_two_sided_p": 0.010582643402853354
+    }
+  },
+  "note": "Runtime verification checks Drive copies and token shards. Local verification checks exported bytes, sources, scores and accounting; it does not rerun GPU inference."
+}

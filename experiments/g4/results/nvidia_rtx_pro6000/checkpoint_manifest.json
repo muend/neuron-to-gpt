@@ -1,0 +1,34 @@
+{
+  "last.pt": {
+    "sha256": "d080a67a577021bada17d5e7ef91d504dbb62588d04cd1552ccaeb5b0007885b",
+    "bytes": 1494374619,
+    "model_config": {
+      "block_size": 1024,
+      "vocab_size": 50304,
+      "n_layer": 12,
+      "n_head": 12,
+      "n_embd": 768,
+      "dropout": 0.0,
+      "weight_tying": true,
+      "attn_implementation": "sdpa"
+    },
+    "successful_updates": 38061,
+    "tokens_seen": 1247182848
+  },
+  "best.pt": {
+    "sha256": "78c3ec572225d28f755d869c623e64c096b8ff59811aa2798cf1c72a7fb08b4c",
+    "bytes": 498435223,
+    "model_config": {
+      "block_size": 1024,
+      "vocab_size": 50304,
+      "n_layer": 12,
+      "n_head": 12,
+      "n_embd": 768,
+      "dropout": 0.0,
+      "weight_tying": true,
+      "attn_implementation": "sdpa"
+    },
+    "successful_updates": 38061,
+    "tokens_seen": 1247182848
+  }
+}

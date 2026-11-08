@@ -1,0 +1,105 @@
+{
+  "format": "g4-results-v1",
+  "transport_sha256": "4c5a1743f25ddb94fa024f785826c068340b45873d4a585e00ccbe1c79bc0867",
+  "files": {
+    "training.json": {
+      "sha256": "3e4285df717d092654aef677524f3e310c6ea00159188df713e181ba460cec91",
+      "bytes": 1475796
+    },
+    "updates.jsonl": {
+      "sha256": "b893bf66b2c2a4ac2d762a2b1ccc39cbe275f0c554d19fa15e781d0eb8bbb607",
+      "bytes": 11912576
+    },
+    "summary.json": {
+      "sha256": "711aac23d2652b54bbd5534092786fda10716882f76963ec0ea9c6240302a7ab",
+      "bytes": 777
+    },
+    "summary.png": {
+      "sha256": "d9a20a4e9ff64b5a72a672c732539f42febddce2eecfd7d52f4651b8dfab3c46",
+      "bytes": 91524
+    },
+    "data_manifest.json": {
+      "sha256": "e6ca9d3d185aa4e81d585a8c988de4f2baf56a67cdff25f43424956e9d01c120",
+      "bytes": 14371663
+    },
+    "checkpoint_manifest.json": {
+      "sha256": "aff7a499ea99cc7b0c882f6a3edd722105385a2ece248b2dd5c1e728c282b08b",
+      "bytes": 842
+    },
+    "runtime_verification.json": {
+      "sha256": "10182f040ea3f67a79a73ed21a689c5028ecd05f80c94a537e5dbee93ddb8c99",
+      "bytes": 669
+    },
+    "evaluations/9ed20912121bf392/hellaswag_openai_heldout1000.json": {
+      "sha256": "c8212f07938035cafd417898c9f58df535ce78ee61debea88a94308b023678fa",
+      "bytes": 436924
+    },
+    "evaluations/9ed20912121bf392/hellaswag_own_course1000.json": {
+      "sha256": "efb83c9deaf99278a608518caafa87693e1d4deed6f42dd0fbc45e1b6fff5598",
+      "bytes": 434349
+    },
+    "evaluations/9ed20912121bf392/hellaswag_own_heldout1000.json": {
+      "sha256": "b37fd9225f661e90efe045d2710b75ef5b0035e904510c0678921a328887a6b1",
+      "bytes": 436129
+    },
+    "evaluations/9ed20912121bf392/hellaswag_openai_course1000.json": {
+      "sha256": "ca199973fe7c038af2d2283dc38b727959278b8be933e0213f3697078a23850a",
+      "bytes": 435034
+    },
+    "sources/week10/model.py": {
+      "sha256": "c3880320d61666d7c79f861dba74fb242ad09085fb7e03dd45ea64dde55f9535",
+      "bytes": 14009
+    },
+    "sources/week11/training.py": {
+      "sha256": "4f2726530f52a6b2a4ba42afde9d5a2b1848445aa94c315f2c7d3aba2051fe05",
+      "bytes": 6447
+    },
+    "sources/week12/common.py": {
+      "sha256": "eef5d129baa5ee535e3f73712fef517178883def84119a6b3f8667949cd465db",
+      "bytes": 2768
+    },
+    "sources/week12/data.py": {
+      "sha256": "1cea648faf5728b394b1928db9da29a2f11645f180d46c82468c7400fd288354",
+      "bytes": 7883
+    },
+    "sources/week12/evaluate.py": {
+      "sha256": "5ccd1e957f189f6ba3d783825e42d3cb21d53f315ea40e8a8fcd140f7d0f5867",
+      "bytes": 10608
+    },
+    "sources/week12/make_colab_notebook.py": {
+      "sha256": "a2a267d41214cc450e09e26175722c7a360eacfefdb29d807195c0ba17057a5d",
+      "bytes": 14112
+    },
+    "sources/week12/plot_summary.py": {
+      "sha256": "02226b744b822cdd925df5fffa389b6c765f929b642fa8ccc74e164aaaaba649",
+      "bytes": 4728
+    },
+    "sources/week12/prepare_data.py": {
+      "sha256": "23aff9e61c8ebace9f756a6f076d0f59460348963781f560881a7776cb0e4094",
+      "bytes": 3039
+    },
+    "sources/week12/report.py": {
+      "sha256": "5533dbc4e0e2ec1bce3657dc7cc647556d14bc9bf1c2992dfe46c30445d2fc7c",
+      "bytes": 8710
+    },
+    "sources/week12/test_pipeline.py": {
+      "sha256": "ac5e975febb3379eed61e35a958116b9d4c3bfacb851d85992a367e273364f13",
+      "bytes": 9576
+    },
+    "sources/week12/train.py": {
+      "sha256": "53b60b9c59560ed897c57e06534f8baa495497587e93fbb004ba0b1adbfb1dc2",
+      "bytes": 14694
+    },
+    "sources/week12/requirements.txt": {
+      "sha256": "fbaa3a25f33137be3bf04bf3bff20eb9555bc54fe0d9bdf5f038fdb0ba664096",
+      "bytes": 115
+    },
+    "sources/experiments/g4/pilot.py": {
+      "sha256": "a9db862f5178c6dbe69d78f93d2c789a094157bdf0633388e1931f51dce7c88d",
+      "bytes": 26776
+    }
+  },
+  "excluded_from_git": [
+    "hellaswag_selection.json"
+  ]
+}

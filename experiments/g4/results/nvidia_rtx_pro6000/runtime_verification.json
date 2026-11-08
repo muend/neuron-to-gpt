@@ -1,0 +1,17 @@
+{
+  "status": "verified",
+  "source_commit": "c926fb8eb93d85abd71d34a734b213e17e9548e5",
+  "runtime_source_hashes_verified": true,
+  "all_shards_checksum_verified": true,
+  "drive_tokens_verified": true,
+  "drive_checkpoints_verified": true,
+  "evaluation_predictions_verified": true,
+  "inference_rerun": false,
+  "raw_update_rows": 38061,
+  "first_update_step": 1,
+  "last_update_step": 38061,
+  "train_val_document_overlap": 0,
+  "baseline_document_overlap": 0,
+  "training_data_manifest_sha256": "e6ca9d3d185aa4e81d585a8c988de4f2baf56a67cdff25f43424956e9d01c120",
+  "checkpoint_manifest_sha256": "aff7a499ea99cc7b0c882f6a3edd722105385a2ece248b2dd5c1e728c282b08b"
+}
