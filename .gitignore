@@ -34,3 +34,6 @@ week08/outputs/
 week08/.panel_dependencies/
 week08/.panel_cache/
 week08/.panel_venv/
+
+# Local packaging/recovery artifacts are not project sources.
+/deliverables/

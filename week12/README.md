@@ -17,14 +17,13 @@ and [import validation record](results/nvidia_l4/import_validation.json).
 Nine independent correctness tests also pass. The optional Turkish experiment
 was not run.
 
-Submission is through the GitHub code and report links, with a
-[short email draft](../deliverables/teslim_maili.txt) and
-[summary image](../deliverables/yz50_hafta11_12_sonuclar.png). Local ZIP exports
-are recovery artifacts and are excluded from Git. The approximately 40 MB token
-corpus and 1.5 GB resume checkpoint are separate files in the user's Drive
-folder `MyDrive/YZ50/week12/nvidia_l4/`; they are not uploaded to GitHub. The import preserves the exact executed source snapshot
-under `results/nvidia_l4/sources/`, including the notebook generator before
-the later notebook stdout-forwarding fix.
+The [experiment summary](results/nvidia_l4/summary.png) combines the measured
+speed, learning curve and HellaSwag comparison. Regenerate it with
+`python week12/plot_summary.py`.
+
+The token corpus and resumable checkpoint are stored separately from Git.
+The exact executed source snapshot is under `results/nvidia_l4/sources/`,
+including the notebook generator before the later stdout-forwarding fix.
 
 ## Keep the current Colab L4
 
