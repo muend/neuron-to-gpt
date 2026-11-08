@@ -7,6 +7,7 @@ import gc
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -394,6 +395,12 @@ def main():
         if args.backup.resolve() in forbidden:
             parser.error("Backup must be separate from local output and original checkpoint folder")
     {"prepare": prepare, "train": train, "finish": finish}[args.task](args)
+    if args.task == "prepare":
+        # Bounded HF streams may retain network workers during interpreter
+        # shutdown. Writers and ZIP are closed and the manifest is saved.
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(0)
 
 
 if __name__ == "__main__":

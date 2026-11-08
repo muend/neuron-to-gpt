@@ -40,8 +40,25 @@ cells = [cell("markdown", """
     print('Source commit:', subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip())
     assert torch.cuda.is_bf16_supported()
     def run(*args):
-        subprocess.run([sys.executable, '-u', 'experiments/g4/pilot.py', *map(str, args)],
-                       check=True)  # Stream progress immediately, not only at completion.
+        command = [sys.executable, '-u', 'experiments/g4/pilot.py', *map(str, args)]
+        process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                   text=True, bufsize=1)
+        try:
+            for line in process.stdout:
+                print(line, end='', flush=True)
+            if process.wait():
+                raise subprocess.CalledProcessError(process.returncode, command)
+        except BaseException:
+            if process.poll() is None:
+                process.terminate()
+                try:
+                    process.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait()
+            raise
+        finally:
+            process.stdout.close()
     subprocess.check_call([sys.executable, '-m', 'unittest', 'experiments.g4.test_pilot'])
     """), cell("code", """
     from google.colab import drive
